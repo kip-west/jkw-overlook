@@ -6,8 +6,11 @@ chai.use(spies);
 
 describe('domUpdates', function() {
   beforeEach(() => {
+    console.log(domUpdates)
     global.document = {};
-    chai.spy.on(document, ['getElementById', 'querySelector'])
+    chai.spy.on(document, ['getElementById', 'querySelector'], () => {
+      classList: []
+    })
   });
 
   describe('Change View Methods', function() {

@@ -1,16 +1,13 @@
 const domUpdates = {
-  loginDashboard: document.querySelector('.login-dashboard'),
-  customerDashboard: document.querySelector('.customer-dashboard'),
-  managerDashboard: document.querySelector('.manager-dashboard'),
-
   hideAll() {
-    const allDashboards = [this.loginDashboard, this.customerDashboard, this.managerDashboard];
+    let loginDashboard = document.querySelector('.login-dashboard');
+    let customerDashboard = document.querySelector('.customer-dashboard');
+    let managerDashboard = document.querySelector('.manager-dashboard');
+    let allDashboards = [loginDashboard, customerDashboard, managerDashboard];
+    console.log(allDashboards)
+
     allDashboards.map(dashboard => dashboard.classList.add('hidden'));
   },
-
-  validateLogin() {
-
-  }
 }
 
-module.export = domUpdates
+export default domUpdates;
