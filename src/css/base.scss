@@ -21,6 +21,10 @@ header {
   justify-content: space-between;
   padding: 0px 10px 0px 10px;
 }
+
+.hidden {
+  display: none!important
+}
 /*-----------Login Dashboard----------*/
 .login-dashboard {
   align-items: center;
