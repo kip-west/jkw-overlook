@@ -1,7 +1,68 @@
 /* This is an example of using Sass, otherwise plain CSS works too*/
-$primary-background: radial-gradient(circle, rgba(63,94,251,1) 0%, rgba(252,70,107,1) 100%);
-;
+$primary-background: url(https://cms-assets.tutsplus.com/uploads/users/523/posts/27364/final_image/project-preview-large.png);
+$widget-color: #F8F8FF;
+$text-color: #2A231B;
+$orange-color: #DB5A2F;
+$red-color: #9B2725;
 
 body {
   background: $primary-background;
+  color: $text-color;
+  font-family: 'Roboto', sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+header {
+  align-items: center;
+  background-color: $widget-color;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding: 0px 10px 0px 10px;
+}
+
+.hidden {
+  display: none!important
+}
+/*-----------Login Dashboard----------*/
+.login-dashboard {
+  align-items: center;
+  align-content: center;
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  justify-content: center;
+}
+
+.login-container {
+  align-items: center;
+  background-color: $widget-color;
+  border-radius: 15px;
+  display: flex;
+  justify-content: center;
+  width: 50%;
+  height: 50%;
+  text-align: center;
+}
+
+.login-container h2 {
+  margin: 0;
+}
+
+.login-field {
+  margin: 20px 0 20px;
+  width: 100%;
+}
+
+.login-form-label {
+  padding-bottom: 10px;
+}
+
+#username-input,
+#password-input {
+  background-color: $widget-color;
+  border-width: 0 0 1px;
+  padding: 5px;
+  width: 250px;
 }
