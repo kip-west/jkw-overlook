@@ -3,9 +3,9 @@ import BookingsData from '../src/BookingsData';
 import bookingData from './test-data/bookingData'
 
 describe.only('Bookings Data', function() {
-  let bookingsData;
+  let bookingsData1;
   beforeEach(function() {
-    bookingsData = new BookingsData(bookingData);
+    bookingsData1 = new BookingsData(bookingData);
   });
 
   it('should be a function', function() {
@@ -13,11 +13,32 @@ describe.only('Bookings Data', function() {
   });
 
   it('should be an instance of Bookings Data', function() {
-    expect(bookingsData).to.be.an.instanceof(BookingsData);
+    expect(bookingsData1).to.be.an.instanceof(BookingsData);
   });
 
   it('should have a list of bookings', function() {
-    expect(bookingsData.bookings).to.be.an('array');
-    expect(bookingsData.bookings).to.deep.equal(bookingsData.bookings);
+    expect(bookingsData1.bookings).to.be.an('array');
+    expect(bookingsData1.bookings).to.deep.equal(bookingsData1.bookings);
+  });
+  describe('Find Bookings By Date', function() {
+    it('should return a list of bookings for a specific date', function() {
+      expect(bookingsData1.findBookingByDate('2020/04/22')).to.deep.equal([
+        {
+          id: "qwerty12345",
+          userID: 1,
+          date: "2020/04/22",
+          roomNumber: 15,
+          roomServiceCharges: []
+        }
+        ,
+        {
+          id: "zxcvb56789",
+          userID: 2,
+          date: "2020/04/22",
+          roomNumber: 13,
+          roomServiceCharges: []
+        }
+      ]);
+    });
   })
 })
