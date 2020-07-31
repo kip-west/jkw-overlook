@@ -2,7 +2,7 @@ import { expect } from 'chai';
 import Customer from '../src/Customer'
 import User from '../src/User'
 
-describe.only('Customer', function() {
+describe('Customer', function() {
   let customer1;
 
   beforeEach(function() {

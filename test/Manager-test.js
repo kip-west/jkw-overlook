@@ -2,7 +2,7 @@ import { expect } from 'chai';
 import Manager from '../src/Manager';
 import User from '../src/User';
 
-describe.only('Manager', function() {
+describe('Manager', function() {
   let manager1;
   beforeEach(function() {
       manager1 = new Manager({
