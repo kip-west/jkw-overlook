@@ -51,6 +51,15 @@ describe.only('RoomsData', function() {
       expect(roomsData1.findRoomByType(null)).to.deep.equal([]);
     });
 
+    it('should check to make sure that user input is a room type', function() {
+      expect(roomsData1.checkRoomType('banana')).to.equal(false);
+      expect(roomsData1.checkRoomType('junior suite')).to.equal(true);
+    })
 
+    it('should return an error message if there are no rooms available for that type', function() {
+      let foundRooms = roomsData1.findRoomByType('junior suite');
+
+      expect(foundRooms.errorMessage).to.equal('Sorry! There are no junior suite rooms available.')
+    })
   });
 });
