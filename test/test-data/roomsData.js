@@ -23,6 +23,14 @@ let roomsData = {
       bedSize: "king",
       numBeds: 1,
       costPerNight: 491.14
+    },
+    {
+      number: 217,
+      roomType: "suite",
+      bidet: true,
+      bedSize: "full",
+      numBeds: 2,
+      costPerNight: 477.38
     }
   ]
 };
