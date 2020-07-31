@@ -1,7 +1,7 @@
 import { expect } from 'chai';
 import Room from '../src/Room';
 
-describe.only('Room', function() {
+describe('Room', function() {
   let room1, room2, room3;
   beforeEach(function() {
     room1 = new Room ({
