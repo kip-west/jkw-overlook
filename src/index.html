@@ -89,10 +89,15 @@
           <section class="searchRoom-results">
             <div class="vacant-room-card">
               <h3><span id="room-card-roomType">Junior Suite</span></h3>
+              <hr>
               <p>Bidet: <span id="room-card-bidet">Yes</span></p>
               <p>Bed Size: <span id="room-card-bedSize">Queen<span></p>
               <p>Number of Beds: <span id="room-card-numBeds">2</span></p>
-              <h3><span id="room-card-costPerNight">$491.14</span> per night</h3>
+              <hr>
+              <div>
+                <h3><span id="room-card-costPerNight">$491.14</span> per night</h3>
+                <button class="book-room">Book Room</button>
+              </div>
             </div>
           </section>
         </div>
@@ -149,39 +154,30 @@
               <section class="user-profile">
                 <h3><span id="user-name">Wendy Torrance</span></h3>
                 <span class="bookings-list" id="all-bookings-for-user">
-                  <ul>
-                    <li>April 4, 2020; residential-suite</li>
-                    <li>April 23, 2020; junior-suite</li>
-                  </ul>
+                  <ol class="list-of-bookings">
+                    <li class="booking-list-item">April 4, 2020; residential-suite <button class="deleteBooking">Delete</button></li>
+                    <li class="booking-list-item">April 23, 2020; junior-suite <button class="deleteBooking">Delete</button></li>
+                  </ol>
                 </span>
               </section>
               <hr>
-              <section class="modify-bookings">
-                <section class="add-booking-for-user">
-                  <h3>Book a Room</h3>
-                  <form class="add-booking-form">
-                    <label for="select-date-input" class="select-date-input-label">Select Date</label>
-                    <input value="select-date-input" id="select-date-for-booking" type="date">
-                    <label for="select-room-input" class="select-date-input-label">Select Room</label>
-                    <input list="rooms" name="select-room-input" id="select-room-input">
-                    <datalist id="rooms">
-                      <option value="Room Number 1">
-                      <option value="Room Number 2">
-                      <option value="Room Number 3">
-                    </datalist>
-                    <div class="modify-booking-button-container">
-                      <input value="Book Room" type="submit">
-                      <input value="Clear Form" type="reset">
-                    </div>
-                  </form>
-                </section>
-                <hr>
-                <section class="remove-booking-for-user">
-                  <h3>Delete a Booking</h3>
-                  <form class="delete-booking-form">
-                    <label>
-                  </form>
-                </section>
+              <section class="add-booking-for-user">
+                <h3>Book a Room</h3>
+                <form class="add-booking-form">
+                  <label for="select-date-input" class="select-date-input-label">Select Date</label>
+                  <input value="select-date-input" id="select-date-for-booking" type="date">
+                  <label for="select-room-input" class="select-date-input-label">Select Room</label>
+                  <input list="rooms" name="select-room-input" id="select-room-input">
+                  <datalist id="rooms">
+                    <option value="Room Number 1">
+                    <option value="Room Number 2">
+                    <option value="Room Number 3">
+                  </datalist>
+                  <div class="modify-booking-button-container">
+                    <input value="Book Room" type="submit">
+                    <input value="Clear Form" type="reset">
+                  </div>
+                </form>
               </section>
             </div>
           </section>

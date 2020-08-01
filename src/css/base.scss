@@ -19,6 +19,7 @@ header {
 
 hr {
   width: 90%;
+  color: #CCCCCC;
 }
 
 .hidden {
@@ -86,7 +87,8 @@ hr {
   height: 90vh
 }
 
-ul {
+ul,
+ol {
   text-align: left;
 }
 
@@ -180,11 +182,41 @@ span {
   height: fit-content;
 }
 
+.user-card {
+  width: 75%
+}
+
 .searchUsers-results {
   margin: 5%;
   align-content: center;
   display: flex;
   justify-content: center;
+}
+
+.bookings-list {
+  display: flex;
+  justify-content: center;
+}
+
+.list-of-bookings {
+  padding: 0;
+  list-style-type: none;
+  border: 1px solid #CCCCCC;
+  width: 90%;
+}
+
+.list-of-bookings li {
+  padding: 8px 16px;
+  border-bottom: 1px solid #CCCCCC;
+}
+
+ol li:last-child {
+  border-bottom: none;
+}
+
+.booking-list-item {
+  text-align: left;
+  font-size: 1.5vw;
 }
 
 .add-booking-form {
