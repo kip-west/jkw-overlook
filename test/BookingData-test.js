@@ -63,4 +63,16 @@ describe.only('Bookings Data', function() {
       ])
     })
   })
+
+  describe('Find Booking by ID', function() {
+    it('should return a booking by it\'s id', function() {
+      expect(bookingsData1.findBookingByID('qwerty56789')).to.deep.equal({
+        id: 'qwerty56789',
+        userID: 1,
+        date: '2020/04/23',
+        roomNumber: 15,
+        roomServiceCharges: []
+      })
+    })
+  })
 })
