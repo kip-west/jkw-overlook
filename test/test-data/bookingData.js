@@ -27,6 +27,13 @@ let bookingData = {
       date: "2020/02/06",
       roomNumber: 13,
       roomServiceCharges: []
+    },
+    {
+      id: "zxcvb56789",
+      userID: 2,
+      date: "2020/04/22",
+      roomNumber: 13,
+      roomServiceCharges: []
     }
   ]
 }
