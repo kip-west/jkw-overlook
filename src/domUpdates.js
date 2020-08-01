@@ -31,7 +31,7 @@ const domUpdates = {
       this.showManagerDashboard();
     }
 
-    if(userName.input.value === 'customer') {
+    if(usernameInput.value === 'customer') {
       this.showCustomerDashboard();
     }
   }

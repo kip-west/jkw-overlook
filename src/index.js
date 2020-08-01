@@ -8,10 +8,12 @@ import domUpdates from '../src/domUpdates';
 import './images/turing-logo.png';
 
 const loginSubmitButton = document.getElementById("submit-login");
-
 loginSubmitButton.addEventListener("click", checkLoginSubmission);
 
 function checkLoginSubmission() {
   event.preventDefault();
-  console.log(document.querySelector('.manager-dashboard'));
+  if(domUpdates.checkPassword()) {
+    domUpdates.hideAll();
+    domUpdates.checkUsername();
+  }
 }
