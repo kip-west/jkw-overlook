@@ -17,6 +17,11 @@ header {
   padding: 0px 10px 0px 10px;
 }
 
+hr {
+  width: 90%;
+  color: #CCCCCC;
+}
+
 .hidden {
   display: none!important
 }
@@ -62,16 +67,19 @@ header {
   width: 250px;
 }
 
-/*-----------Customer Dashboard----------*/
-.customer-dashboard {
+/*-----------User Dashboards----------*/
+.customer-dashboard,
+.manager-dashboard {
   display: grid;
   grid-template-columns: 2fr 3fr;
   justify-content: center;
   align-content: center;
   height: 100vh;
+  padding: 3%;
 }
 
-.customer-data {
+.customer-data,
+.manager-data {
   display: flex;
   flex-direction: column;
   justify-content: space-around;
@@ -79,7 +87,8 @@ header {
   height: 90vh
 }
 
-ul {
+ul,
+ol {
   text-align: left;
 }
 
@@ -102,6 +111,9 @@ span {
 .user-total,
 .upcoming-reservations,
 .past-reservations,
+.today-revenue,
+.total-rooms-available,
+.percentage-rooms-available
 {
   align-items: center;
   background-color: $widget-color;
@@ -113,8 +125,8 @@ span {
   width: 90%;
 }
 
-.searchRooms-container
-{
+.searchRooms-container,
+.searchUsers-container {
   background-color: $widget-color;
   border-radius: 15px;
   display: flex;
@@ -123,20 +135,23 @@ span {
   width: 90%;
 }
 
-.searchRooms-form {
+.searchRooms-form,
+.searchUsers-form {
   align-items: flex-end;
   display: flex;
   flex-direction: row;
   justify-content: space-around;
 }
 
-.searchRooms-form input {
-  font-size: 1.2vw;
+.searchRooms-form input,
+.searchUsers-form input {
   display: inline-block;
+  font-size: 1.2vw;
 }
 
 #select-date,
-#select-roomType {
+#select-roomType,
+#select-user-by-name {
   background-color: $widget-color;
   border-width: 0 0 1px;
   padding: 5px;
@@ -152,14 +167,66 @@ span {
 .searchRoom-results {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
+  grid-auto-rows: auto;
   grid-gap: 3%;
   padding: 3%;
   margin: 0.25%;
+  height: 100%;
 }
 
-.vacant-room-card {
+.vacant-room-card,
+.user-card {
   background-color: #E8E8EE;
   border-radius: 16px;
   border: 1px solid #CCCCCC;
+  height: fit-content;
 }
-/*-----------Manager Dashboard----------*/
+
+.user-card {
+  width: 75%
+}
+
+.searchUsers-results {
+  margin: 5%;
+  align-content: center;
+  display: flex;
+  justify-content: center;
+}
+
+.bookings-list {
+  display: flex;
+  justify-content: center;
+}
+
+.list-of-bookings {
+  padding: 0;
+  list-style-type: none;
+  border: 1px solid #CCCCCC;
+  width: 90%;
+}
+
+.list-of-bookings li {
+  padding: 8px 16px;
+  border-bottom: 1px solid #CCCCCC;
+}
+
+ol li:last-child {
+  border-bottom: none;
+}
+
+.booking-list-item {
+  text-align: left;
+  font-size: 1.5vw;
+}
+
+.add-booking-form {
+  display: flex;
+  flex-direction: column;
+  margin: 5%;
+  justify-content: space-around;
+}
+
+.add-booking-form input {
+  padding: 3%;
+  margin: 3%;
+}
