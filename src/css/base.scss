@@ -17,6 +17,10 @@ header {
   padding: 0px 10px 0px 10px;
 }
 
+hr {
+  width: 90%;
+}
+
 .hidden {
   display: none!important
 }
@@ -62,16 +66,19 @@ header {
   width: 250px;
 }
 
-/*-----------Customer Dashboard----------*/
-.customer-dashboard {
+/*-----------User Dashboards----------*/
+.customer-dashboard,
+.manager-dashboard {
   display: grid;
   grid-template-columns: 2fr 3fr;
   justify-content: center;
   align-content: center;
   height: 100vh;
+  padding: 3%;
 }
 
-.customer-data {
+.customer-data,
+.manager-data {
   display: flex;
   flex-direction: column;
   justify-content: space-around;
@@ -102,6 +109,9 @@ span {
 .user-total,
 .upcoming-reservations,
 .past-reservations,
+.today-revenue,
+.total-rooms-available,
+.percentage-rooms-available
 {
   align-items: center;
   background-color: $widget-color;
@@ -113,8 +123,8 @@ span {
   width: 90%;
 }
 
-.searchRooms-container
-{
+.searchRooms-container,
+.searchUsers-container {
   background-color: $widget-color;
   border-radius: 15px;
   display: flex;
@@ -123,20 +133,23 @@ span {
   width: 90%;
 }
 
-.searchRooms-form {
+.searchRooms-form,
+.searchUsers-form {
   align-items: flex-end;
   display: flex;
   flex-direction: row;
   justify-content: space-around;
 }
 
-.searchRooms-form input {
-  font-size: 1.2vw;
+.searchRooms-form input,
+.searchUsers-form input {
   display: inline-block;
+  font-size: 1.2vw;
 }
 
 #select-date,
-#select-roomType {
+#select-roomType,
+#select-user-by-name {
   background-color: $widget-color;
   border-width: 0 0 1px;
   padding: 5px;
@@ -152,14 +165,36 @@ span {
 .searchRoom-results {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
+  grid-auto-rows: auto;
   grid-gap: 3%;
   padding: 3%;
   margin: 0.25%;
+  height: 100%;
 }
 
-.vacant-room-card {
+.vacant-room-card,
+.user-card {
   background-color: #E8E8EE;
   border-radius: 16px;
   border: 1px solid #CCCCCC;
+  height: fit-content;
 }
-/*-----------Manager Dashboard----------*/
+
+.searchUsers-results {
+  margin: 5%;
+  align-content: center;
+  display: flex;
+  justify-content: center;
+}
+
+.add-booking-form {
+  display: flex;
+  flex-direction: column;
+  margin: 5%;
+  justify-content: space-around;
+}
+
+.add-booking-form input {
+  padding: 3%;
+  margin: 3%;
+}
