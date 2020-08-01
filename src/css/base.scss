@@ -1,9 +1,4 @@
-/* This is an example of using Sass, otherwise plain CSS works too*/
-$primary-background: url(https://cms-assets.tutsplus.com/uploads/users/523/posts/27364/final_image/project-preview-large.png);
-$widget-color: #F8F8FF;
-$text-color: #2A231B;
-$orange-color: #DB5A2F;
-$red-color: #9B2725;
+@import 'variables';
 
 body {
   background: $primary-background;
