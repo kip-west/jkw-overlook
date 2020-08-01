@@ -7,7 +7,7 @@ describe.only('Customer Data', function() {
   beforeEach(function() {
     customerData1 = new CustomerData(customerData);
   });
-  
+
   it('should be a function', function() {
     expect(CustomerData).to.be.a('function');
   });
@@ -19,4 +19,14 @@ describe.only('Customer Data', function() {
   it('should have a list of customers', function() {
     expect(customerData1.users).to.deep.equal(customerData.users);
   });
+
+  describe('Find User By Name', function() {
+    it('should be a function', function() {
+      expect(customerData1.findUserByName).to.be.a('function');
+    });
+
+    it('should return a single user based on a name', function() {
+      expect(customerData1.findUserByName('Danny Torrance')).to.deep.equal({ id: 2, name: 'Danny Torrance'});
+    });
+  })
 })
