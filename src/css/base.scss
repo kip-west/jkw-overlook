@@ -148,4 +148,18 @@ span {
   flex-direction: column;
   justify-content: space-around;
 }
+
+.searchRoom-results {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-gap: 3%;
+  padding: 3%;
+  margin: 0.25%;
+}
+
+.vacant-room-card {
+  background-color: #E8E8EE;
+  border-radius: 16px;
+  border: 1px solid #CCCCCC;
+}
 /*-----------Manager Dashboard----------*/
