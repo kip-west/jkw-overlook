@@ -26,5 +26,22 @@ describe('domUpdates', function() {
         expect(document.getElementById).to.have.been.called(1)
       });
     })
+
+    // describe.only('Check Username', function() {
+    //   it('should spy on the checkUsername field', function() {
+    //     global.document = {};
+    //     global.clas
+    //     chai.spy.on(document, ['getElementById', 'querySelector'], () => {
+    //       return {
+    //         classList: [],
+    //         value: 'manager'
+    //       }
+    //     });
+    //
+    //     domUpdates.checkUsername();
+    //
+    //     expect(domUpdates.showManagerDashboard).to.have.been.called(1)
+    //   })
+    // })
   })
 });
