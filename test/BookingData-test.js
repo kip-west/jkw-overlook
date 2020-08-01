@@ -20,9 +20,10 @@ describe.only('Bookings Data', function() {
     expect(bookingsData1.bookings).to.be.an('array');
     expect(bookingsData1.bookings).to.deep.equal(bookingsData1.bookings);
   });
+
   describe('Find Bookings By Date', function() {
     it('should return a list of bookings for a specific date', function() {
-      expect(bookingsData1.findBookingByDate('2020/04/22')).to.deep.equal([
+      expect(bookingsData1.findBookingsByDate('2020/04/22')).to.deep.equal([
         {
           id: "qwerty12345",
           userID: 1,
@@ -40,5 +41,26 @@ describe.only('Bookings Data', function() {
         }
       ]);
     });
+  })
+
+  describe('Find Bookings By User', function() {
+    it('should return a list of bookings for a specific user', function() {
+      expect(bookingsData1.findBookingsByUser(1)).to.deep.equal([
+        {
+          id: "qwerty12345",
+          userID: 1,
+          date: "2020/04/22",
+          roomNumber: 15,
+          roomServiceCharges: []
+        },
+        {
+          id: "qwerty56789",
+          userID: 1,
+          date: "2020/04/23",
+          roomNumber: 15,
+          roomServiceCharges: []
+        }
+      ])
+    })
   })
 })

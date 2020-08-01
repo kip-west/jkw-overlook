@@ -3,8 +3,13 @@ class BookingsData {
     this.bookings = bookingData.bookings;
   }
 
-  findBookingByDate(date) {
+  findBookingsByDate(date) {
     let foundBookings = this.bookings.filter(booking => booking.date === date);
+    return foundBookings;
+  }
+
+  findBookingsByUser(userID) {
+    let foundBookings = this.bookings.filter(booking => booking.userID === userID);
     return foundBookings;
   }
 }
