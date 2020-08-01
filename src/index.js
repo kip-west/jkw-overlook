@@ -45,7 +45,7 @@ function getDataFromServer() {
     fetch('https://fe-apps.herokuapp.com/api/v1/overlook/1904/rooms/rooms'),
     fetch('https://fe-apps.herokuapp.com/api/v1/overlook/1904/bookings/bookings')
   ])
-    .then(responses => Promise.all(responses.map(response => response.json())))
-    .then(([usersData, roomsData, bookingsData]) => createHotelData(usersData, roomsData, bookingsData))
-    .catch(err => console.error(err))
+  .then(responses => Promise.all(responses.map(response => response.json())))
+  .then(([usersData, roomsData, bookingsData]) => createHotelData(usersData, roomsData, bookingsData))
+  .catch(err => console.error(err))
 }
