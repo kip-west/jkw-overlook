@@ -21,7 +21,36 @@ const domUpdates = {
 
   checkPassword() {
     let passwordInput = document.getElementById('password-input');
-    return (passwordInput.value === 'overlook2020')
+
+    if(passwordInput.value === 'overlook2020') {
+      return true
+    } else {
+      this.displayPasswordError()
+    }
+  },
+
+  displayUsernameError() {
+    return 'Username not recognized; please try again!'
+  },
+
+  displayPasswordError() {
+    return 'Password not recognized; please try again!'
+  },
+
+  checkID(id) {
+    return (id >= 0 && id <= 50)
+  },
+
+  inspectUsernameInput(username) {
+    let splitUsername = username.split(/([0-9]+)/)
+    let root = splitUsername[0];
+    let id = splitUsername[1];
+
+    if (root === 'customer' && this.checkID(id)) {
+      this.showCustomerDashboard();
+    } else {
+      this.displayUsernameError();
+    }
   },
 
   checkUsername() {
@@ -29,12 +58,10 @@ const domUpdates = {
 
     if(usernameInput.value === 'manager') {
       this.showManagerDashboard();
+    } else {
+      this.inspectUsernameInput(usernameInput.value);
     }
-
-    if(usernameInput.value === 'customer') {
-      this.showCustomerDashboard();
-    }
-  }
+  },
 }
 
 export default domUpdates;

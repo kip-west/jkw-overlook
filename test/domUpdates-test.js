@@ -25,6 +25,21 @@ describe('domUpdates', function() {
 
         expect(document.getElementById).to.have.been.called(1)
       });
+
+      // it('should be able to inspect a customer username', function() {
+      //   expect(domUpdates.inspectUsernameInput('customer35')).to.equal('YAY!')
+      //   expect(domUpdates.inspectUsernameInput('customer51')).to.equal('Boo...')
+      // })
+    })
+
+    describe.only('Display Login Error Messages', function() {
+      it('should be able to return an error message for an invalid username', function() {
+        expect(domUpdates.displayUsernameError()).to.equal('Username not recognized; please try again!');
+      });
+
+      it('should be able to return an error message for an invalid password', function() {
+        expect(domUpdates.displayPasswordError()).to.equal('Password not recognized; please try again!');
+      });
     })
 
     // describe.only('Check Username', function() {
