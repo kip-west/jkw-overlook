@@ -44,4 +44,39 @@ describe('domUpdates', function() {
     //   })
     // })
   })
+
+  // describe('Change View Methods', function() {
+  //   beforeEach(() => {
+  //     global.document = {};
+  //     chai.spy.on(document, ['querySelectorAll'], () => {
+  //       return {
+  //         dashboards: [],
+  //       }
+  //     });
+  //   });
+  //
+  //   it('should spy on domUpdates.hideAll', function() {
+  //     domUpdates.hideAll();
+  //
+  //     expect(document.querySelectorAll).to.have.been.called(1);
+  //   });
+  //
+  //   it('should spy on showCustomerDashboard', function() {
+  //     domUpdates.showCustomerDashboard();
+  //
+  //     expect(document.querySelector).to.have.been.called(1);
+  //   });
+  //
+  //   it('should spy on showManagerDashboard', function() {
+  //     domUpdates.showManagerDashboard();
+  //
+  //     expect(document.querySelector).to.have.been.called(1);
+  //   });
+  //
+  //   it('should spy on showLoginDashboard', function() {
+  //     domUpdates.showLoginDashboard();
+  //
+  //     expect(document.querySelector).to.have.been.called(1);
+  //   });
+  // })
 });
