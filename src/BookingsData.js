@@ -4,7 +4,8 @@ class BookingsData {
   }
 
   findBookingByDate(date) {
-    return this.bookings.filter(booking => booking.date === date)
+    let foundBookings = this.bookings.filter(booking => booking.date === date);
+    return foundBookings;
   }
 }
 
