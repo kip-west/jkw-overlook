@@ -12,6 +12,12 @@ class BookingsData {
     let foundBookings = this.bookings.filter(booking => booking.userID === userID);
     return foundBookings;
   }
+
+  findBookingByID(bookingID) {
+    let foundBooking = this.bookings.find(booking => booking.id === bookingID)
+
+    return foundBooking
+  }
 }
 
 export default BookingsData
