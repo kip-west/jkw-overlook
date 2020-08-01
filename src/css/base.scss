@@ -1,9 +1,4 @@
-/* This is an example of using Sass, otherwise plain CSS works too*/
-$primary-background: url(https://cms-assets.tutsplus.com/uploads/users/523/posts/27364/final_image/project-preview-large.png);
-$widget-color: #F8F8FF;
-$text-color: #2A231B;
-$orange-color: #DB5A2F;
-$red-color: #9B2725;
+@import 'variables';
 
 body {
   background: $primary-background;
@@ -66,3 +61,105 @@ header {
   padding: 5px;
   width: 250px;
 }
+
+/*-----------Customer Dashboard----------*/
+.customer-dashboard {
+  display: grid;
+  grid-template-columns: 2fr 3fr;
+  justify-content: center;
+  align-content: center;
+  height: 100vh;
+}
+
+.customer-data {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  height: 90vh
+}
+
+ul {
+  text-align: left;
+}
+
+span {
+  color: $red-color;
+}
+
+.widget-number {
+  font-size: 5vw;
+}
+
+.widget-font {
+  padding: 3px
+}
+
+.bookings-list {
+  font-size: 1.75vw;
+}
+
+.user-total,
+.upcoming-reservations,
+.past-reservations,
+{
+  align-items: center;
+  background-color: $widget-color;
+  border-radius: 15px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+  width: 90%;
+}
+
+.searchRooms-container
+{
+  background-color: $widget-color;
+  border-radius: 15px;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  width: 90%;
+}
+
+.searchRooms-form {
+  align-items: flex-end;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+
+.searchRooms-form input {
+  font-size: 1.2vw;
+  display: inline-block;
+}
+
+#select-date,
+#select-roomType {
+  background-color: $widget-color;
+  border-width: 0 0 1px;
+  padding: 5px;
+}
+
+.searchRooms-button-container {
+  display: flex;
+  height: 110%;
+  flex-direction: column;
+  justify-content: space-around;
+}
+
+.searchRoom-results {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-gap: 3%;
+  padding: 3%;
+  margin: 0.25%;
+}
+
+.vacant-room-card {
+  background-color: #E8E8EE;
+  border-radius: 16px;
+  border: 1px solid #CCCCCC;
+}
+/*-----------Manager Dashboard----------*/

@@ -12,8 +12,8 @@
       <span class="user-info">Welcome!</span>
     </header>
     <main>
-      <section class="dashboard login-dashboard">
-        <section class="login-container">
+      <section class="dashboard login-dashboard hidden">
+        <div class="login-container">
           <form class="login-form">
             <h2>Login</h2>
             <div class="login-field username-field">
@@ -26,13 +26,79 @@
             </div>
             <input value="Login" id="submit-login" type="submit">
           </form>
-        </section>
+        </div>
       </section>
-      <section class="dashboard customer-dashboard hidden">
-        <h2>Customer Dashboard</h2>
+      <section class="dashboard customer-dashboard">
+        <div class="customer-data">
+          <section class="user-total">
+            <h2>You have spent
+            <br>
+            <span class="widget-number">$456.56</span><br>
+            with The Overlook.
+            <br><br>
+            Thank you for your support!</h2>
+          </section>
+
+          <section class="upcoming-reservations">
+            <h2 class="widget-font">We look forward to seeing you on:
+            <span class="bookings-list" id="upcoming-bookings">
+              <ul>
+                <li>April 4, 2020; residential-suite</li>
+                <li>April 23, 2020; junior-suite</li>
+              </ul>
+            </span>
+            </h2>
+          </section>
+
+          <section class="past-reservations">
+            <h2 class=widget-font>How were your recent stays from:
+            <span class="bookings-list" id="upcoming-bookings">
+              <ul>
+                <li>March 7, 2020; suite</li>
+                <li>February 19, 2020; single room</li>
+              </ul>
+            </span>
+            </h2>
+          </section>
+        </div>
+
+        <div class="searchRooms-container">
+          <h2>Search Rooms</h2>
+          <form class="searchRooms-form">
+            <div class="searchRooms-field date-field">
+              <input type="date" name="select-date" id="select-date">
+              <br>
+              <label for="select-date" class="select-date-label">Select Date</label>
+            </div>
+            <div class="searchRooms-field roomType-field">
+              <input list="room-types" name="select-roomType" id="select-roomType">
+              <br>
+              <label for="select-roomType" class="select-roomType-label">Select Room Type</label>
+              <datalist id="room-types">
+                <option value="Junior Suite">
+                <option value="Residential Suite">
+                <option value="Single Room">
+                <option value="Suite">
+              </datalist>
+            </div>
+            <div class="searchRooms-button-container">
+              <input value="Search Rooms" id="searchRooms-button" type="submit">
+              <input value=" Clear Results" id="clear-searchRooms-button" type="reset">
+            </div>
+          </form>
+          <section class="searchRoom-results">
+            <div class="vacant-room-card">
+              <h3><span id="room-card-roomType">Junior Suite</span></h3>
+              <p>Bidet: <span id="room-card-bidet">Yes</span></p>
+              <p>Bed Size: <span id="room-card-bedSize">Queen<span></p>
+              <p>Number of Beds: <span id="room-card-numBeds">2</span></p>
+              <h3><span id="room-card-costPerNight">$491.14</span> per night</h3>
+            </div>
+          </section>
+        </div>
       </section>
       <section class="dashboard manager-dashboard hidden">
-        <h2>Manager Dashboard</h2>
+        <div>Manager Dashboard</h2>
       </section>
     </main>
   </body>
