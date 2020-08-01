@@ -23,7 +23,7 @@ describe.only('Bookings Data', function() {
 
   describe('Find Bookings By Date', function() {
     it('should return a list of bookings for a specific date', function() {
-      expect(bookingsData1.findBookingByDate('2020/04/22')).to.deep.equal([
+      expect(bookingsData1.findBookingsByDate('2020/04/22')).to.deep.equal([
         {
           id: "qwerty12345",
           userID: 1,
