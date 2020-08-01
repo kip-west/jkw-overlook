@@ -63,15 +63,17 @@
         </div>
 
         <div class="searchRooms-container">
-          <form class="login-form">
-            <h2>Search Rooms</h2>
+          <h2>Search Rooms</h2>
+          <form class="searchRooms-form">
             <div class="searchRooms-field date-field">
-              <label for="select-date" class="select-date-label">Select Date:</label><br>
               <input type="date" name="select-date" id="select-date">
+              <br>
+              <label for="select-date" class="select-date-label">Select Date</label>
             </div>
             <div class="searchRooms-field roomType-field">
-              <label for="select-roomType" class="select-roomType-label">Select Room Type:</label><br>
               <input list="room-types" name="select-roomType" id="select-roomType">
+              <br>
+              <label for="select-roomType" class="select-roomType-label">Select Room Type</label>
               <datalist id="room-types">
                 <option value="Junior Suite">
                 <option value="Residential Suite">
@@ -79,7 +81,10 @@
                 <option value="Suite">
               </datalist>
             </div>
-            <input value="Search Rooms" id="searchRooms-button" type="submit">
+            <div class="searchRooms-button-container">
+              <input value="Search Rooms" id="searchRooms-button" type="submit">
+              <input value=" Clear Results" id="clear-searchRooms-button" type="reset">
+            </div>
           </form>
           <section class="searchRoom-results">
             <h2>display search results here</h2>

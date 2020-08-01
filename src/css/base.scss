@@ -101,7 +101,7 @@ span {
 
 .user-total,
 .upcoming-reservations,
-.past-reservations
+.past-reservations,
 {
   align-items: center;
   background-color: $widget-color;
@@ -113,4 +113,39 @@ span {
   width: 90%;
 }
 
+.searchRooms-container
+{
+  background-color: $widget-color;
+  border-radius: 15px;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  width: 90%;
+}
+
+.searchRooms-form {
+  align-items: flex-end;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+
+.searchRooms-form input {
+  font-size: 1.2vw;
+  display: inline-block;
+}
+
+#select-date,
+#select-roomType {
+  background-color: $widget-color;
+  border-width: 0 0 1px;
+  padding: 5px;
+}
+
+.searchRooms-button-container {
+  display: flex;
+  height: 110%;
+  flex-direction: column;
+  justify-content: space-around;
+}
 /*-----------Manager Dashboard----------*/
