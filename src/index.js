@@ -4,6 +4,10 @@
 // An example of how you tell webpack to use a CSS (SCSS) file
 import './css/base.scss';
 import domUpdates from '../src/domUpdates';
+import CustomerData from '../src/CustomerData';
+import RoomsData from '../src/RoomsData';
+import BookingsData from '../src/BookingsData';
+
 // An example of how you tell webpack to use an image (also need to link to it in the index.html)
 import './images/turing-logo.png';
 
@@ -27,10 +31,10 @@ function checkLoginSubmission() {
 }
 
 function createHotelData(usersData, roomsData, bookingsData) {
-  hotelData.usersData = usersData;
-  hotelData.roomsData = roomsData;
-  hotelData.bookingsData = bookingsData;
-
+  hotelData.usersData = new CustomerData(usersData);
+  hotelData.roomsData = new RoomsData(roomsData);
+  hotelData.bookingsData = new BookingsData(bookingsData);
+  console.log(hotelData)
   return hotelData;
 }
 
