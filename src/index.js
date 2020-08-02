@@ -12,12 +12,6 @@ import BookingsData from '../src/BookingsData';
 import './images/turing-logo.png';
 
 let today;
-let hotelData = {
-  usersData: null,
-  roomsData: null,
-  bookingsData: null,
-  currentUser: null
-};
 
 window.onload = getDataFromServer();
 
@@ -48,28 +42,22 @@ function validateLogin() {
 
 /*----------Create Current User Functions----------*/
 function createCustomer(id) {
-  hotelData.currentUser = hotelData.usersData.findUserByID(id);
-}
-
-function retrieveCurrentCustomerBookings() {
-  hotelData.currentUser.findBookingHistory(hotelData.bookingsData.bookings);
+  domUpdates.currentUser = domUpdates.usersData.findUserByID(id);
 }
 
 function createHotelData(usersData, roomsData, bookingsData) {
-  hotelData.usersData = new CustomerData(usersData);
-  hotelData.roomsData = new RoomsData(roomsData);
-  hotelData.bookingsData = new BookingsData(bookingsData);
-  console.log(hotelData.bookingsData)
+  domUpdates.usersData = new CustomerData(usersData);
+  domUpdates.roomsData = new RoomsData(roomsData);
+  domUpdates.bookingsData = new BookingsData(bookingsData);
+  createCustomer(13);
 
   //This code creates a dummy user while I set up Customer Dashboard with real data.
-  createCustomer(13);
-  retrieveCurrentCustomerBookings();
   updateCustomerDisplay();
-  return hotelData;
 }
 
 function updateCustomerDisplay() {
-  domUpdates.displayTotalSpent(hotelData)
+  domUpdates.retrieveCurrentCustomerBookings();
+  domUpdates.displayTotalSpent([1])
 }
 
 /*----------GET/POST/DELETE Functions----------*/
