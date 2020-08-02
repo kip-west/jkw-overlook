@@ -20,13 +20,25 @@ let hotelData = {
 window.onload = getDataFromServer();
 
 const loginSubmitButton = document.getElementById("submit-login");
-loginSubmitButton.addEventListener("click", checkLoginSubmission);
+loginSubmitButton.addEventListener("click", validateLogin);
 
-function checkLoginSubmission() {
+function validateUsername() {
+  if (domUpdates.checkManagerLogin()) {
+    domUpdates.showManagerDashboard();
+  } else if (domUpdates.checkCustomerLogin()) {
+    //Eventually, instantiate the customer based on their id -jkw 8/1/20 @6:15 PM
+    domUpdates.showCustomerDashboard();
+  } else {
+    domUpdates.displayLoginError();
+  }
+}
+
+function validateLogin() {
   event.preventDefault();
   if(domUpdates.checkPassword()) {
-    domUpdates.hideAll();
-    domUpdates.checkUsername();
+    validateUsername()
+  } else {
+    domUpdates.displayLoginError();
   }
 }
 
@@ -34,7 +46,7 @@ function createHotelData(usersData, roomsData, bookingsData) {
   hotelData.usersData = new CustomerData(usersData);
   hotelData.roomsData = new RoomsData(roomsData);
   hotelData.bookingsData = new BookingsData(bookingsData);
-  console.log(hotelData)
+
   return hotelData;
 }
 
