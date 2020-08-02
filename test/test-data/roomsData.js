@@ -25,7 +25,7 @@ let roomsData = {
       costPerNight: 491.14
     },
     {
-      number: 217,
+      number: 15,
       roomType: "suite",
       bidet: true,
       bedSize: "full",
