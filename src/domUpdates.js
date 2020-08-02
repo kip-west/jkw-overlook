@@ -5,62 +5,53 @@ const domUpdates = {
   },
 
   showCustomerDashboard() {
+    this.hideAll();
+
     let customerDashboard = document.querySelector('.customer-dashboard');
     customerDashboard.classList.remove('hidden');
   },
 
   showManagerDashboard() {
+    this.hideAll();
+
     let managerDashboard = document.querySelector('.manager-dashboard');
     managerDashboard.classList.remove('hidden');
   },
 
   showLoginDashboard() {
+    this.hideAll();
+
     let loginDashboard = document.querySelector('.login-dashboard');
     loginDashboard.classList.remove('hidden');
   },
 
   checkPassword() {
     let passwordInput = document.getElementById('password-input');
-
-    if(passwordInput.value === 'overlook2020') {
-      return true
-    } else {
-      this.displayPasswordError()
-    }
+    return(passwordInput.value === 'overlook2020');
   },
 
-  displayUsernameError() {
-    return 'Username not recognized; please try again!'
-  },
-
-  displayPasswordError() {
-    return 'Password not recognized; please try again!'
+  displayLoginError() {
+    //Eventually, turn this into a method that prints this message in the space beneath Login & Username -jkw 8/1/20 @ 6:10 PM
+    return 'Invalid credentials!'
   },
 
   checkID(id) {
     return (id >= 0 && id <= 50)
   },
 
-  inspectUsernameInput(username) {
-    let splitUsername = username.split(/([0-9]+)/)
+  checkCustomerLogin() {
+    let usernameInput = document.getElementById('username-input').value;
+    console.log(usernameInput);
+    let splitUsername = usernameInput.split(/([0-9]+)/)
     let root = splitUsername[0];
     let id = splitUsername[1];
 
-    if (root === 'customer' && this.checkID(id)) {
-      this.showCustomerDashboard();
-    } else {
-      this.displayUsernameError();
-    }
+    return (root === 'customer' && this.checkID(id))
   },
 
-  checkUsername() {
+  checkManagerLogin() {
     let usernameInput = document.getElementById('username-input');
-
-    if(usernameInput.value === 'manager') {
-      this.showManagerDashboard();
-    } else {
-      this.inspectUsernameInput(usernameInput.value);
-    }
+    return (usernameInput.value === 'manager')
   },
 }
 
