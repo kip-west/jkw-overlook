@@ -25,13 +25,18 @@ describe.only('Customer Data', function() {
     expect(customerData1.users[0]).to.be.an.instanceof(Customer)
   })
 
-  describe('Find User By Name', function() {
+  describe('Find User', function() {
     it('should be a function', function() {
       expect(customerData1.findUserByName).to.be.a('function');
+      expect(customerData1.findUserByID).to.be.a('function');
     });
 
     it('should return a single user based on a name', function() {
       expect(customerData1.findUserByName('Danny Torrance')).to.deep.equal({ id: 2, name: 'Danny Torrance'});
+    });
+
+    it('should return a single user based on an id', function() {
+      expect(customerData1.findUserByID(2)).to.deep.equal({ id: 2, name: 'Danny Torrance'});
     });
   })
 })
