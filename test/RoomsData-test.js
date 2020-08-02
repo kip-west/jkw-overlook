@@ -61,5 +61,13 @@ describe.only('RoomsData', function() {
 
       expect(foundRooms.errorMessage).to.equal('Sorry! There are no junior suite rooms available.')
     })
+
+    describe('Calculate Total Spent', function() {
+      it('should return a total amount spent for a list of room numbers', function() {
+        let roomNumbers = [1, 3, 3, 1, 2];
+
+        expect(roomsData1.calculateTotalSpent(roomNumbers)).to.equal(2176.46)
+      })
+    })
   });
 });

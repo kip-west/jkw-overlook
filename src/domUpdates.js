@@ -58,9 +58,9 @@ const domUpdates = {
     return `<li>Date: ${booking.date}; Room Number: ${booking.roomNumber}</li>`
   },
 
-  displayTotalSpent(hotelData) {
+  displayTotalSpent(roomNumbers) {
     let totalSpentField = document.getElementById('user-total-spent');
-    let currentUserTotal = hotelData.currentUser.calculateTotalSpent(hotelData.roomsData.rooms);
+    let currentUserTotal = hotelData.roomsData.calculateTotalSpent(roomNumbers);
     totalSpentField.innerText = `$${currentUserTotal}`;
   },
 

@@ -25,6 +25,16 @@ class RoomsData {
 
     return roomTypes.includes(roomType)
   }
+
+  calculateTotalSpent(roomNumbers) {
+    let totalSpent = roomNumbers.reduce((totalSpentAcc, roomNumber) => {
+      let foundRoom = this.rooms.find(room => room.number === roomNumber);
+      let foundRoomCost = foundRoom.costPerNight;
+      return totalSpentAcc += foundRoomCost
+    }, 0)
+
+    return totalSpent
+  }
 }
 
 export default RoomsData
