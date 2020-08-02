@@ -88,6 +88,18 @@ describe('domUpdates', function() {
 
       expect(domUpdates.createBookingListItem(booking1)).to.equal('<li>Date: 2020/04/21; Room Number: 9</li>')
     })
+
+    it('should display the users total spent for all bookings', function() {
+      global.document = {};
+      chai.spy.on(document, ['getElementById'], () => {
+        return {
+          innerText: ''
+        }
+      })
+      domUpdates.displayTotalSpent();
+
+      expect(document.getElementById).to.have.been.called(1);
+    })
   })
 
   // describe('Change View Methods', function() {

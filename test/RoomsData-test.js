@@ -32,7 +32,7 @@ describe.only('RoomsData', function() {
           costPerNight: 477.38
         },
         {
-          number: 217,
+          number: 15,
           roomType: "suite",
           bidet: true,
           bedSize: "full",
