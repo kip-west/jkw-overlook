@@ -54,8 +54,8 @@ const domUpdates = {
     }
   },
 
-  displayCustomerTotal() {
-
+  createBookingListItem(booking) {
+    return `<li>Date: ${booking.date}; Room Number: ${booking.roomNumber}</li>`
   },
 
   checkManagerLogin() {

@@ -70,9 +70,23 @@ describe('domUpdates', function() {
             value: 'overloko2020'
           }
         })
-        
+
         expect(domUpdates.displayLoginError()).to.equal('Invalid credentials!');
       });
+    })
+  })
+
+  describe.only('Update Customer Dashboard', function() {
+    it('should be able to create list items for a customers bookings', function() {
+      let booking1 = {
+        "id": "qwerty12345",
+        "userID": 1,
+        "date": "2020/04/21",
+        "roomNumber": 9,
+        "roomServiceCharges": []
+      };
+
+      expect(domUpdates.createBookingListItem(booking1)).to.equal('<li>Date: 2020/04/21; Room Number: 9</li>')
     })
   })
 
