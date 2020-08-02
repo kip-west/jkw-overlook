@@ -53,11 +53,25 @@ describe('domUpdates', function() {
 
     describe('Display Login Error Messages', function() {
       it('should be able to return an error message for an invalid username', function() {
-        expect(domUpdates.displayUsernameError()).to.equal('Username not recognized; please try again!');
+        global.document = {};
+        chai.spy.on(document, ['getElementById'], () => {
+          return {
+            value: 'customer52'
+          }
+        });
+
+        expect(domUpdates.displayLoginError()).to.equal('Invalid credentials!');
       });
 
       it('should be able to return an error message for an invalid password', function() {
-        expect(domUpdates.displayPasswordError()).to.equal('Password not recognized; please try again!');
+        global.document = {};
+        chai.spy.on(document, ['getElementById'], () => {
+          return {
+            value: 'overloko2020'
+          }
+        })
+        
+        expect(domUpdates.displayLoginError()).to.equal('Invalid credentials!');
       });
     })
   })
