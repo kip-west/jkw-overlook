@@ -25,14 +25,25 @@ describe('domUpdates', function() {
 
         expect(document.getElementById).to.have.been.called(1)
       });
-
-      // it('should be able to inspect a customer username', function() {
-      //   expect(domUpdates.inspectUsernameInput('customer35')).to.equal('YAY!')
-      //   expect(domUpdates.inspectUsernameInput('customer51')).to.equal('Boo...')
-      // })
     })
 
-    describe.only('Display Login Error Messages', function() {
+    describe.only('Check Username', function() {
+      it('should be able to check a customer login', function() {
+        global.document = {};
+        chai.spy.on(document, ['getElementById'], () => {
+          return {
+            value: 'customer35'
+          }
+        });
+
+        expect(domUpdates.checkCustomerLogin()).to.deep.equal({
+          isValid: true,
+          createCustomer: 35
+        });
+      })
+    });
+    
+    describe('Display Login Error Messages', function() {
       it('should be able to return an error message for an invalid username', function() {
         expect(domUpdates.displayUsernameError()).to.equal('Username not recognized; please try again!');
       });
