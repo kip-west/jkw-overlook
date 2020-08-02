@@ -24,10 +24,6 @@ window.onload = getDataFromServer();
 const loginSubmitButton = document.getElementById("submit-login");
 loginSubmitButton.addEventListener("click", validateLogin);
 
-function createCustomer(id) {
-  hotelData.currentUser = hotelData.usersData.findUserByID(id);
-}
-
 function validateUsername() {
   if (domUpdates.checkManagerLogin()) {
     domUpdates.showManagerDashboard();
@@ -50,15 +46,24 @@ function validateLogin() {
   }
 }
 
+/*----------Create Current User Functions----------*/
+function createCustomer(id) {
+  hotelData.currentUser = hotelData.usersData.findUserByID(id);
+}
+
+function retrieveCurrentCustomerBookings() {
+  hotelData.currentUser.findBookingHistory(hotelData.bookingsData.bookings);
+}
+
 function createHotelData(usersData, roomsData, bookingsData) {
   hotelData.usersData = new CustomerData(usersData);
   hotelData.roomsData = new RoomsData(roomsData);
   hotelData.bookingsData = new BookingsData(bookingsData);
+  console.log(hotelData.bookingsData)
 
   //This code creates a dummy user while I set up Customer Dashboard with real data.
   createCustomer(13);
-  console.log(hotelData.currentUser)
-
+  retrieveCurrentCustomerBookings();
   return hotelData;
 }
 
