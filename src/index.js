@@ -55,6 +55,10 @@ function createHotelData(usersData, roomsData, bookingsData) {
   hotelData.roomsData = new RoomsData(roomsData);
   hotelData.bookingsData = new BookingsData(bookingsData);
 
+  //This code creates a dummy user while I set up Customer Dashboard with real data.
+  createCustomer(13);
+  console.log(hotelData.currentUser)
+
   return hotelData;
 }
 
