@@ -41,12 +41,15 @@ const domUpdates = {
 
   checkCustomerLogin() {
     let usernameInput = document.getElementById('username-input').value;
-    console.log(usernameInput);
+
     let splitUsername = usernameInput.split(/([0-9]+)/)
     let root = splitUsername[0];
     let id = splitUsername[1];
 
-    return (root === 'customer' && this.checkID(id))
+    return {
+      isValid: (root === 'customer' && this.checkID(id)),
+      createCustomer: parseInt(id)
+    }
   },
 
   checkManagerLogin() {

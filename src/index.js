@@ -11,22 +11,30 @@ import BookingsData from '../src/BookingsData';
 // An example of how you tell webpack to use an image (also need to link to it in the index.html)
 import './images/turing-logo.png';
 
+let today;
 let hotelData = {
   usersData: null,
   roomsData: null,
-  bookingsData: null
-}
+  bookingsData: null,
+  currentUser: null
+};
 
 window.onload = getDataFromServer();
 
 const loginSubmitButton = document.getElementById("submit-login");
 loginSubmitButton.addEventListener("click", validateLogin);
 
+function createCustomer(id) {
+  hotelData.currentUser = hotelData.usersData.findUserByID(id);
+}
+
 function validateUsername() {
   if (domUpdates.checkManagerLogin()) {
     domUpdates.showManagerDashboard();
-  } else if (domUpdates.checkCustomerLogin()) {
+  } else if (domUpdates.checkCustomerLogin().isValid) {
     //Eventually, instantiate the customer based on their id -jkw 8/1/20 @6:15 PM
+    let currentUserID = domUpdates.checkCustomerLogin().createCustomer;
+    createCustomer(currentUserID)
     domUpdates.showCustomerDashboard();
   } else {
     domUpdates.displayLoginError();
