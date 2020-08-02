@@ -1,4 +1,9 @@
 const domUpdates = {
+  usersData: null,
+  roomsData: null,
+  bookingsData: null,
+  currentUser: null,
+
   hideAll() {
     let dashboards = document.querySelectorAll('.dashboard');
     dashboards.forEach(dashboard => dashboard.classList.add('hidden'))
@@ -60,7 +65,7 @@ const domUpdates = {
 
   displayTotalSpent(roomNumbers) {
     let totalSpentField = document.getElementById('user-total-spent');
-    let currentUserTotal = hotelData.roomsData.calculateTotalSpent(roomNumbers);
+    let currentUserTotal = this.roomsData.calculateTotalSpent(roomNumbers);
     totalSpentField.innerText = `$${currentUserTotal}`;
   },
 
