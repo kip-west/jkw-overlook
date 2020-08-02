@@ -1,6 +1,7 @@
 import { expect } from 'chai';
 import customerData from './test-data/customerData'
 import CustomerData from '../src/CustomerData'
+import Customer from '../src/Customer'
 
 describe.only('Customer Data', function() {
   let customerData1;
@@ -19,6 +20,10 @@ describe.only('Customer Data', function() {
   it('should have a list of customers', function() {
     expect(customerData1.users).to.deep.equal(customerData.users);
   });
+
+  it('should have a list of customers that are instances of Customer', function() {
+    expect(customerData1.users[0]).to.be.an.instanceof(Customer)
+  })
 
   describe('Find User By Name', function() {
     it('should be a function', function() {
