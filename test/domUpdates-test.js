@@ -6,7 +6,7 @@ chai.use(spies);
 
 describe('domUpdates', function() {
   describe.only('Check Login Methods', function() {
-    describe.only('Check Password', function() {
+    describe('Check Password', function() {
       beforeEach(function() {
         global.document = {};
         chai.spy.on(document, ['getElementById'], () => {
@@ -27,22 +27,30 @@ describe('domUpdates', function() {
       });
     })
 
-    describe.only('Check Username', function() {
-      it('should be able to check a customer login', function() {
+    describe('Check Username', function() {
+      beforeEach(function() {
         global.document = {};
         chai.spy.on(document, ['getElementById'], () => {
           return {
             value: 'customer35'
           }
-        });
+        })
+      });
 
+      it('should be able to check a customer login', function() {
         expect(domUpdates.checkCustomerLogin()).to.deep.equal({
           isValid: true,
           createCustomer: 35
         });
       })
+
+      it('should spy on the checkUsername field', function() {
+        domUpdates.checkCustomerLogin();
+
+        expect(document.getElementById).to.have.been.called(1)
+      })
     });
-    
+
     describe('Display Login Error Messages', function() {
       it('should be able to return an error message for an invalid username', function() {
         expect(domUpdates.displayUsernameError()).to.equal('Username not recognized; please try again!');
@@ -52,23 +60,6 @@ describe('domUpdates', function() {
         expect(domUpdates.displayPasswordError()).to.equal('Password not recognized; please try again!');
       });
     })
-
-    // describe.only('Check Username', function() {
-    //   it('should spy on the checkUsername field', function() {
-    //     global.document = {};
-    //     global.clas
-    //     chai.spy.on(document, ['getElementById', 'querySelector'], () => {
-    //       return {
-    //         classList: [],
-    //         value: 'manager'
-    //       }
-    //     });
-    //
-    //     domUpdates.checkUsername();
-    //
-    //     expect(domUpdates.showManagerDashboard).to.have.been.called(1)
-    //   })
-    // })
   })
 
   // describe('Change View Methods', function() {
