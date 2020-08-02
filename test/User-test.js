@@ -31,37 +31,4 @@ describe.only('User', function() {
   it('should have a name', function() {
     expect(user1.name).to.equal('Wendy Torrance')
   })
-
-  it('should be able to validate login info', function() {
-    expect(user1.validateLogin({
-      username: 'customer1',
-      password: 'overlook2020'
-    })).to.equal(true)
-  })
-
-  it('should be able to retrieve a list of it\'s own bookings', function() {
-    user1.findBookingHistory(bookings.bookings)
-    expect(user1.bookings).to.deep.equal([
-      {
-        id: "qwerty12345",
-        userID: 1,
-        date: "2020/04/22",
-        roomNumber: 15,
-        roomServiceCharges: []
-      },
-      {
-        id: "qwerty56789",
-        userID: 1,
-        date: "2020/04/23",
-        roomNumber: 15,
-        roomServiceCharges: []
-      }
-    ])
-  })
-
-  // it('should be able to calculate the total spent on its bookings (given a list of rooms)', function() {
-  //   user1.findBookingHistory(bookings.bookings);
-  //
-  //   expect(user1.calculateTotalSpent(rooms.rooms)).to.equal(954.76);
-  // })
 })
