@@ -59,6 +59,11 @@ const domUpdates = {
     }
   },
 
+  retrieveCurrentCustomerBookings() {
+    let currentUserBookings = this.bookingsData.findBookingsByUser(this.currentUser.id);
+    this.currentUser.bookings = currentUserBookings;
+  },
+
   createBookingListItem(booking) {
     return `<li>Date: ${booking.date}; Room Number: ${booking.roomNumber}</li>`
   },

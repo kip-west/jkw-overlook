@@ -45,24 +45,18 @@ function createCustomer(id) {
   domUpdates.currentUser = domUpdates.usersData.findUserByID(id);
 }
 
-function retrieveCurrentCustomerBookings() {
-  let currentUserBookings = domUpdates.bookingsData.findBookingByID(domUpdates.currentUser.id);
-  domUpdates.currentUser.bookings = currentUserBookings;
-}
-
 function createHotelData(usersData, roomsData, bookingsData) {
   domUpdates.usersData = new CustomerData(usersData);
   domUpdates.roomsData = new RoomsData(roomsData);
   domUpdates.bookingsData = new BookingsData(bookingsData);
-  console.log(domUpdates.bookingsData)
+  createCustomer(13);
 
   //This code creates a dummy user while I set up Customer Dashboard with real data.
-  createCustomer(13);
-  retrieveCurrentCustomerBookings();
   updateCustomerDisplay();
 }
 
 function updateCustomerDisplay() {
+  domUpdates.retrieveCurrentCustomerBookings();
   domUpdates.displayTotalSpent([1])
 }
 
