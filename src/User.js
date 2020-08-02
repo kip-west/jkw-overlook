@@ -9,7 +9,7 @@ class User {
   }
 
   findBookingHistory(bookings) {
-    this.bookings = bookings.filter(booking => booking.userId === this.id)
+    this.bookings = bookings.filter(booking => booking.userID === this.id)
   }
 
   findRooms(date, rooms, bookings) {

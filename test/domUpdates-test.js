@@ -6,7 +6,7 @@ chai.use(spies);
 
 describe('domUpdates', function() {
   describe.only('Check Login Methods', function() {
-    describe.only('Check Password', function() {
+    describe('Check Password', function() {
       beforeEach(function() {
         global.document = {};
         chai.spy.on(document, ['getElementById'], () => {
@@ -25,39 +25,69 @@ describe('domUpdates', function() {
 
         expect(document.getElementById).to.have.been.called(1)
       });
-
-      // it('should be able to inspect a customer username', function() {
-      //   expect(domUpdates.inspectUsernameInput('customer35')).to.equal('YAY!')
-      //   expect(domUpdates.inspectUsernameInput('customer51')).to.equal('Boo...')
-      // })
     })
 
-    describe.only('Display Login Error Messages', function() {
+    describe('Check Username', function() {
+      beforeEach(function() {
+        global.document = {};
+        chai.spy.on(document, ['getElementById'], () => {
+          return {
+            value: 'customer35'
+          }
+        })
+      });
+
+      it('should be able to check a customer login', function() {
+        expect(domUpdates.checkCustomerLogin()).to.deep.equal({
+          isValid: true,
+          createCustomer: 35
+        });
+      })
+
+      it('should spy on the checkUsername field', function() {
+        domUpdates.checkCustomerLogin();
+
+        expect(document.getElementById).to.have.been.called(1)
+      })
+    });
+
+    describe('Display Login Error Messages', function() {
       it('should be able to return an error message for an invalid username', function() {
-        expect(domUpdates.displayUsernameError()).to.equal('Username not recognized; please try again!');
+        global.document = {};
+        chai.spy.on(document, ['getElementById'], () => {
+          return {
+            value: 'customer52'
+          }
+        });
+
+        expect(domUpdates.displayLoginError()).to.equal('Invalid credentials!');
       });
 
       it('should be able to return an error message for an invalid password', function() {
-        expect(domUpdates.displayPasswordError()).to.equal('Password not recognized; please try again!');
+        global.document = {};
+        chai.spy.on(document, ['getElementById'], () => {
+          return {
+            value: 'overloko2020'
+          }
+        })
+
+        expect(domUpdates.displayLoginError()).to.equal('Invalid credentials!');
       });
     })
+  })
 
-    // describe.only('Check Username', function() {
-    //   it('should spy on the checkUsername field', function() {
-    //     global.document = {};
-    //     global.clas
-    //     chai.spy.on(document, ['getElementById', 'querySelector'], () => {
-    //       return {
-    //         classList: [],
-    //         value: 'manager'
-    //       }
-    //     });
-    //
-    //     domUpdates.checkUsername();
-    //
-    //     expect(domUpdates.showManagerDashboard).to.have.been.called(1)
-    //   })
-    // })
+  describe.only('Update Customer Dashboard', function() {
+    it('should be able to create list items for a customers bookings', function() {
+      let booking1 = {
+        "id": "qwerty12345",
+        "userID": 1,
+        "date": "2020/04/21",
+        "roomNumber": 9,
+        "roomServiceCharges": []
+      };
+
+      expect(domUpdates.createBookingListItem(booking1)).to.equal('<li>Date: 2020/04/21; Room Number: 9</li>')
+    })
   })
 
   // describe('Change View Methods', function() {
