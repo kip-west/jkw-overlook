@@ -64,7 +64,12 @@ function createHotelData(usersData, roomsData, bookingsData) {
   //This code creates a dummy user while I set up Customer Dashboard with real data.
   createCustomer(13);
   retrieveCurrentCustomerBookings();
+  updateCustomerDisplay();
   return hotelData;
+}
+
+function updateCustomerDisplay() {
+  domUpdates.displayTotalSpent(hotelData)
 }
 
 /*----------GET/POST/DELETE Functions----------*/
