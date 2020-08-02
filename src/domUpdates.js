@@ -32,7 +32,9 @@ const domUpdates = {
 
   displayLoginError() {
     //Eventually, turn this into a method that prints this message in the space beneath Login & Username -jkw 8/1/20 @ 6:10 PM
-    return 'Invalid credentials!'
+    if(!this.checkCustomerLogin().isValid || !this.checkPassword()) {
+      return 'Invalid credentials!'
+    }
   },
 
   checkID(id) {
@@ -50,6 +52,10 @@ const domUpdates = {
       isValid: (root === 'customer' && this.checkID(id)),
       createCustomer: parseInt(id)
     }
+  },
+
+  displayCustomerTotal() {
+
   },
 
   checkManagerLogin() {
