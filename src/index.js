@@ -19,6 +19,8 @@ window.onload = getDataFromServer();
 
 const loginSubmitButton = document.getElementById("submit-login");
 loginSubmitButton.addEventListener("click", validateLogin);
+const searchRoomsButton = document.getElementById("searchRooms-button");
+searchRoomsButton.addEventListener("click", searchRooms)
 
 function validateUsername() {
   if (domUpdates.checkManagerLogin()) {
@@ -61,6 +63,11 @@ function updateCustomerDisplay() {
   domUpdates.retrieveCurrentCustomerBookings();
   domUpdates.displayBookingData();
   domUpdates.displayTotalSpent([1]);
+}
+
+function searchRooms() {
+  event.preventDefault();
+  domUpdates.displayVacantRoomsDate();
 }
 
 /*----------GET/POST/DELETE Functions----------*/
