@@ -20,7 +20,9 @@ window.onload = getDataFromServer();
 const loginSubmitButton = document.getElementById("submit-login");
 loginSubmitButton.addEventListener("click", validateLogin);
 const searchRoomsButton = document.getElementById("searchRooms-button");
-searchRoomsButton.addEventListener("click", searchRooms)
+searchRoomsButton.addEventListener("click", searchRooms);
+const clearResultsButton = document.getElementById("clear-searchRooms-button");
+clearResultsButton.addEventListener("click", clearSearchResults)
 
 function validateUsername() {
   if (domUpdates.checkManagerLogin()) {
@@ -65,9 +67,20 @@ function updateCustomerDisplay() {
   domUpdates.displayTotalSpent([1]);
 }
 
+function clearSearchResults() {
+  document.querySelector('.searchRoom-results').innerHTML = '';
+}
+
 function searchRooms() {
   event.preventDefault();
-  domUpdates.displayVacantRoomsDate();
+  clearSearchResults();
+  let selectDateInput = document.getElementById('select-date').value;
+  let roomTypeInput = document.getElementById('select-roomType').value;
+  if (selectDateInput && roomTypeInput) {
+    domUpdates.displayVacantRoomsType()
+  } else if (selectDateInput && !roomTypeInput) {
+    domUpdates.displayVacantRoomsDate();
+  }
 }
 
 /*----------GET/POST/DELETE Functions----------*/
