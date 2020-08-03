@@ -7,11 +7,13 @@ import domUpdates from '../src/domUpdates';
 import CustomerData from '../src/CustomerData';
 import RoomsData from '../src/RoomsData';
 import BookingsData from '../src/BookingsData';
+import moment from 'moment';
+moment().format();
 
 // An example of how you tell webpack to use an image (also need to link to it in the index.html)
 import './images/turing-logo.png';
 
-let today;
+let today = new Date();
 
 window.onload = getDataFromServer();
 
