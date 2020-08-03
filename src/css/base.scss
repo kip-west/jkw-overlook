@@ -87,6 +87,10 @@ hr {
   height: 90vh
 }
 
+.dashboard h2 {
+  font-size: 1.25vw;
+}
+
 ul,
 ol {
   text-align: left;
@@ -97,7 +101,7 @@ span {
 }
 
 .widget-number {
-  font-size: 5vw;
+  font-size: 3vw;
 }
 
 .widget-font {
@@ -174,7 +178,8 @@ span {
   grid-gap: 3%;
   padding: 3%;
   margin: 0.25%;
-  height: 100%;
+  height: 75vh;
+  overflow: scroll;
 }
 
 .vacant-room-card,

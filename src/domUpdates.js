@@ -69,7 +69,8 @@ const domUpdates = {
   },
 
   sortCurrentCustomerBookings() {
-    let sortedBookings = this.currentUser.bookings.sort((a, b) => new Moment(a.date).format('YYYMMDD') - new Moment(b.date).format('YYYMMDD'));
+    console.log(this.currentUser.bookings)
+    let sortedBookings = this.currentUser.bookings.sort((a, b) => new Moment(a.date).format('YYYYMMDD') - new Moment(b.date).format('YYYYMMDD'));
     this.currentUser.bookings = sortedBookings;
   },
 
@@ -83,6 +84,10 @@ const domUpdates = {
       return separatedBookingsAcc
     }, { pastBookings: [], upcomingBookings: [] })
     return separatedBookings;
+  },
+
+  createBookingListItem(booking) {
+    return `<li>Date: ${booking.date}; Room Number: ${booking.roomNumber}</li>`
   },
 
   displayBookingData() {
@@ -99,8 +104,58 @@ const domUpdates = {
     })
   },
 
-  createBookingListItem(booking) {
-    return `<li>Date: ${booking.date}; Room Number: ${booking.roomNumber}</li>`
+  findVacantRooms(date) {
+    let bookedRooms = this.bookingsData.findBookingsByDate(date);
+    let bookedRoomNumbers = bookedRooms.reduce((roomNumbers, booking) => {
+      roomNumbers.push(booking.roomNumber);
+      return roomNumbers
+    }, [])
+
+    let vacantRooms = this.roomsData.rooms.filter(room => {
+      if(!bookedRoomNumbers.includes(room.number)) {
+        return room
+      }
+    });
+
+    return vacantRooms;
+  },
+
+  createVacantRoomCards(rooms) {
+    let roomCardHTML = rooms.map(room => {
+      return `<div class="vacant-room-card" id=${room.number}>
+      <h3><span id="room-card-roomType">${room.roomType}</span></h3>
+      <hr>
+      <p>Bidet: <span id="room-card-bidet">${room.bidet}</span></p>
+      <p>Bed Size: <span id="room-card-bedSize">${room.bedSize}<span></p>
+      <p>Number of Beds: <span id="room-card-numBeds">${room.numBeds}</span></p>
+      <hr>
+      <div>
+      <h3><span id="room-card-costPerNight">${room.costPerNight}</span> per night</h3>
+      <button class="book-room" id=${room.number}>Book Room</button>
+      </div>
+      </div>`;
+    });
+    roomCardHTML = roomCardHTML.join('');
+    return roomCardHTML;
+  },
+
+  displayVacantRoomsDate() {
+    let selectDateInput = new Moment(document.getElementById('select-date').value).format('YYYY/MM/DD');
+
+    let vacantRooms = this.findVacantRooms(selectDateInput);
+    let searchRoomsResults = document.querySelector('.searchRoom-results');
+    searchRoomsResults.insertAdjacentHTML('afterbegin', this.createVacantRoomCards(vacantRooms));
+  },
+
+  displayVacantRoomsType() {
+    let selectDateInput = new Moment(document.getElementById('select-date').value).format('YYYY/MM/DD');
+    let roomTypeInput = document.getElementById('select-roomType').value.toLowerCase();
+
+    let vacantRooms = this.findVacantRooms(selectDateInput);
+    let vacantRoomsByType = this.roomsData.findRoomByType(roomTypeInput);
+
+    let searchRoomsResults = document.querySelector('.searchRoom-results');
+    searchRoomsResults.insertAdjacentHTML('afterbegin', this.createVacantRoomCards(vacantRoomsByType));
   },
 
   displayTotalSpent(roomNumbers) {
