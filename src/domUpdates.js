@@ -68,8 +68,8 @@ const domUpdates = {
     this.currentUser.bookings = currentUserBookings;
   },
 
-  createRoomNumbersArray() {
-    return this.currentUser.bookings.reduce((roomNumbers, booking) => {
+  createRoomNumbersArray(bookings) {
+    return bookings.reduce((roomNumbers, booking) => {
       roomNumbers.push(booking.roomNumber);
       return roomNumbers;
     }, [])
@@ -78,7 +78,7 @@ const domUpdates = {
   displayTotalSpent(roomNumbers) {
     let totalSpentField = document.getElementById('user-total-spent');
     let currentUserTotal = this.roomsData.calculateTotalSpent(roomNumbers);
-    totalSpentField.innerText = `$${currentUserTotal}`;
+    totalSpentField.innerText = `$${currentUserTotal.toFixed(2)}`;
   },
 
   sortCurrentCustomerBookings() {
@@ -178,8 +178,10 @@ const domUpdates = {
 
   displayTotalRevenue() {
     let totalRevenueField = document.getElementById('today-revenue');
-    let totalRevenue = this.roomsData.calculateTotalSpent(this.findBookingsByDate(this.today));
-    totalSpentField.innerText = `$${currentUserTotal}`;
+    let todaysBookings = this.bookingsData.findBookingsByDate(this.today);
+    let todaysRoomNumbers = this.createRoomNumbersArray(todaysBookings)
+    let totalRevenue =  this.roomsData.calculateTotalSpent(todaysRoomNumbers);
+    totalRevenueField.innerText = `$${totalRevenue.toFixed(2)}`;
   },
 }
 
