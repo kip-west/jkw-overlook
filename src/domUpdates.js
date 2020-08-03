@@ -68,6 +68,12 @@ const domUpdates = {
     this.currentUser.bookings = currentUserBookings;
   },
 
+  displayTotalSpent(roomNumbers) {
+    let totalSpentField = document.getElementById('user-total-spent');
+    let currentUserTotal = this.roomsData.calculateTotalSpent(roomNumbers);
+    totalSpentField.innerText = `$${currentUserTotal}`;
+  },
+
   sortCurrentCustomerBookings() {
     console.log(this.currentUser.bookings)
     let sortedBookings = this.currentUser.bookings.sort((a, b) => new Moment(a.date).format('YYYYMMDD') - new Moment(b.date).format('YYYYMMDD'));
@@ -156,12 +162,6 @@ const domUpdates = {
 
     let searchRoomsResults = document.querySelector('.searchRoom-results');
     searchRoomsResults.insertAdjacentHTML('afterbegin', this.createVacantRoomCards(vacantRoomsByType));
-  },
-
-  displayTotalSpent(roomNumbers) {
-    let totalSpentField = document.getElementById('user-total-spent');
-    let currentUserTotal = this.roomsData.calculateTotalSpent(roomNumbers);
-    totalSpentField.innerText = `$${currentUserTotal}`;
   },
 
   checkManagerLogin() {
