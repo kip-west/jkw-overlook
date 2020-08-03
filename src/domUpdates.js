@@ -1,8 +1,11 @@
+import Moment from 'moment';
+
 const domUpdates = {
   usersData: null,
   roomsData: null,
   bookingsData: null,
   currentUser: null,
+  today: /*new Date()*/ '2020/01/30',
 
   hideAll() {
     let dashboards = document.querySelectorAll('.dashboard');
@@ -62,6 +65,20 @@ const domUpdates = {
   retrieveCurrentCustomerBookings() {
     let currentUserBookings = this.bookingsData.findBookingsByUser(this.currentUser.id);
     this.currentUser.bookings = currentUserBookings;
+  },
+
+  sortCurrentCustomerBookings() {
+    let sortedBookings = this.currentUser.bookings.sort((a, b) => new Moment(a).format('YYYMMDD') - new Moment(b).format('YYYMMDD'));
+    this.currentUser.bookings = sortedBookings;
+    console.log(sortedBookings)
+  },
+
+  displayBookingData() {
+    let upcomingReservationsField = document.getElementById('upcoming-bookings');
+    this.sortCurrentCustomerBookings();
+    this.currentUser.bookings.map(booking => {
+      return upcomingReservationsField.insertAdjacentHTML('afterbegin', this.createBookingListItem(booking))
+    })
   },
 
   createBookingListItem(booking) {

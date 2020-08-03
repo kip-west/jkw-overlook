@@ -59,7 +59,8 @@ function createHotelData(usersData, roomsData, bookingsData) {
 
 function updateCustomerDisplay() {
   domUpdates.retrieveCurrentCustomerBookings();
-  domUpdates.displayTotalSpent([1])
+  domUpdates.displayBookingData();
+  domUpdates.displayTotalSpent([1]);
 }
 
 /*----------GET/POST/DELETE Functions----------*/
