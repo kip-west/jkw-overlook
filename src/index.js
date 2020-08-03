@@ -30,12 +30,16 @@ function validateUsername() {
     createManager();
     domUpdates.showManagerDashboard();
     updateManagerDisplay();
-  } else if (domUpdates.checkCustomerLogin().isValid) {
+  }
+
+  else if (domUpdates.checkCustomerLogin().isValid) {
     let currentUserID = domUpdates.checkCustomerLogin().createCustomer;
     createCustomer(currentUserID)
     domUpdates.showCustomerDashboard();
     updateCustomerDisplay();
-  } else {
+  }
+
+  else {
     domUpdates.displayLoginError();
   }
 }
@@ -62,11 +66,6 @@ function createHotelData(usersData, roomsData, bookingsData) {
   domUpdates.usersData = new CustomerData(usersData);
   domUpdates.roomsData = new RoomsData(roomsData);
   domUpdates.bookingsData = new BookingsData(bookingsData);
-
-//This code is to create the manager while I finish the manager dashboard. DELETE BEFORE PR.
-  createManager();
-  updateManagerDisplay();
-  console.log(domUpdates)
 }
 
 function updateCustomerDisplay() {
@@ -78,6 +77,7 @@ function updateCustomerDisplay() {
 
 function updateManagerDisplay() {
   domUpdates.displayTotalRevenue();
+  domUpdates.displayVacancyData();
 }
 
 function clearSearchResults() {
