@@ -94,3 +94,15 @@ function getDataFromServer() {
   .then(([usersData, roomsData, bookingsData]) => createHotelData(usersData, roomsData, bookingsData))
   .catch(err => console.error(err))
 }
+
+function bookRoom(bookingObject) {
+  fetch('https://fe-apps.herokuapp.com/api/v1/overlook/1904/bookings/bookings', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(bookingObject)
+  })
+  .then(response => console.log(response.status))
+  .catch(err => console.error(err))
+};
