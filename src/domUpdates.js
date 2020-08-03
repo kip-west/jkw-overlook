@@ -147,6 +147,17 @@ const domUpdates = {
     searchRoomsResults.insertAdjacentHTML('afterbegin', this.createVacantRoomCards(vacantRooms));
   },
 
+  displayVacantRoomsType() {
+    let selectDateInput = new Moment(document.getElementById('select-date').value).format('YYYY/MM/DD');
+    let roomTypeInput = document.getElementById('select-roomType').value.toLowerCase();
+
+    let vacantRooms = this.findVacantRooms(selectDateInput);
+    let vacantRoomsByType = this.roomsData.findRoomByType(roomTypeInput);
+
+    let searchRoomsResults = document.querySelector('.searchRoom-results');
+    searchRoomsResults.insertAdjacentHTML('afterbegin', this.createVacantRoomCards(vacantRoomsByType));
+  },
+
   displayTotalSpent(roomNumbers) {
     let totalSpentField = document.getElementById('user-total-spent');
     let currentUserTotal = this.roomsData.calculateTotalSpent(roomNumbers);
