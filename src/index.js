@@ -7,8 +7,7 @@ import domUpdates from '../src/domUpdates';
 import CustomerData from '../src/CustomerData';
 import RoomsData from '../src/RoomsData';
 import BookingsData from '../src/BookingsData';
-import moment from 'moment';
-moment().format();
+import Moment from 'moment';
 
 // An example of how you tell webpack to use an image (also need to link to it in the index.html)
 import './images/turing-logo.png';
@@ -18,10 +17,11 @@ let today = new Date();
 window.onload = getDataFromServer();
 
 const loginSubmitButton = document.getElementById("submit-login");
-loginSubmitButton.addEventListener("click", validateLogin);
 const searchRoomsButton = document.getElementById("searchRooms-button");
-searchRoomsButton.addEventListener("click", searchRooms);
 const clearResultsButton = document.getElementById("clear-searchRooms-button");
+
+loginSubmitButton.addEventListener("click", validateLogin);
+searchRoomsButton.addEventListener("click", searchRooms);
 clearResultsButton.addEventListener("click", clearSearchResults)
 
 function validateUsername() {
@@ -81,6 +81,27 @@ function searchRooms() {
   } else if (selectDateInput && !roomTypeInput) {
     domUpdates.displayVacantRoomsDate();
   }
+
+  addListenersBookRoom();
+}
+
+function addListenersBookRoom() {
+  let bookRoomButtons = document.querySelectorAll('.book-room');
+  for (let i = 0; i < bookRoomButtons.length; i++) {
+    bookRoomButtons[i].addEventListener('click', bookRoomClickHandler);
+  }
+}
+
+function bookRoomClickHandler(event) {
+  let selectDateInput = document.getElementById('select-date').value;
+  let selectDateInputMoment = new Moment(selectDateInput).format('YYYY/MM/DD')
+  let postBody = {
+    "userID": domUpdates.currentUser.id,
+    "date": selectDateInputMoment,
+    "roomNumber": parseInt(event.target.id)
+  }
+
+  postBookingData(postBody);
 }
 
 /*----------GET/POST/DELETE Functions----------*/
@@ -94,3 +115,16 @@ function getDataFromServer() {
   .then(([usersData, roomsData, bookingsData]) => createHotelData(usersData, roomsData, bookingsData))
   .catch(err => console.error(err))
 }
+
+function postBookingData(bookingObject) {
+  console.log(bookingObject);
+  fetch('https://fe-apps.herokuapp.com/api/v1/overlook/1904/bookings/bookings', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(bookingObject)
+  })
+  .then(response => console.log(response.status))
+  .catch(err => console.error(err))
+};
