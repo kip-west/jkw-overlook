@@ -104,7 +104,9 @@ span {
   padding: 3px
 }
 
-.bookings-list {
+#upcoming-bookings {
+  display: flex;
+  flex-direction: column;
   font-size: 1.75vw;
 }
 
