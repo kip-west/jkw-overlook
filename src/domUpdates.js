@@ -1,8 +1,12 @@
+import Moment from 'moment';
+Moment().format('YYYYMMDD');
+
 const domUpdates = {
   usersData: null,
   roomsData: null,
   bookingsData: null,
   currentUser: null,
+  today: '2020/01/30',
 
   hideAll() {
     let dashboards = document.querySelectorAll('.dashboard');
@@ -62,6 +66,37 @@ const domUpdates = {
   retrieveCurrentCustomerBookings() {
     let currentUserBookings = this.bookingsData.findBookingsByUser(this.currentUser.id);
     this.currentUser.bookings = currentUserBookings;
+  },
+
+  sortCurrentCustomerBookings() {
+    let sortedBookings = this.currentUser.bookings.sort((a, b) => new Moment(a.date).format('YYYMMDD') - new Moment(b.date).format('YYYMMDD'));
+    this.currentUser.bookings = sortedBookings;
+  },
+
+  separateCurrentBookings() {
+    let separatedBookings = this.currentUser.bookings.reduce((separatedBookingsAcc, booking) => {
+      if (booking.date > this.today) {
+        separatedBookingsAcc.upcomingBookings.push(booking)
+      } else if (booking.date < this.today) {
+        separatedBookingsAcc.pastBookings.push(booking)
+      }
+      return separatedBookingsAcc
+    }, { pastBookings: [], upcomingBookings: [] })
+    return separatedBookings;
+  },
+
+  displayBookingData() {
+    this.sortCurrentCustomerBookings();
+    let separatedBookings = this.separateCurrentBookings();
+    let upcomingReservationsList = document.getElementById('upcoming-bookings');
+    separatedBookings.upcomingBookings.map(booking => {
+      return upcomingReservationsList.insertAdjacentHTML('afterbegin', this.createBookingListItem(booking))
+    })
+
+    let pastReservationsList = document.getElementById('past-bookings');
+    separatedBookings.pastBookings.map(booking => {
+      return pastReservationsList.insertAdjacentHTML('afterbegin', this.createBookingListItem(booking))
+    })
   },
 
   createBookingListItem(booking) {

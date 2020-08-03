@@ -1,6 +1,8 @@
+import Booking from '../src/Booking'
+
 class BookingsData {
   constructor(bookingData) {
-    this.bookings = bookingData.bookings;
+    this.bookings = bookingData.bookings.map(booking => new Booking(booking));
   }
 
   findBookingsByDate(date) {
