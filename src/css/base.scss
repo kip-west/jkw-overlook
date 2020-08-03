@@ -104,10 +104,11 @@ span {
   padding: 3px
 }
 
-#upcoming-bookings {
+#upcoming-bookings,
+#past-bookings {
   display: flex;
   flex-direction: column;
-  font-size: 1.75vw;
+  font-size: 1.25vw;
 }
 
 .user-total,
