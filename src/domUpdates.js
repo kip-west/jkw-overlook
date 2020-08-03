@@ -68,6 +68,13 @@ const domUpdates = {
     this.currentUser.bookings = currentUserBookings;
   },
 
+  createRoomNumbersArray() {
+    return this.currentUser.bookings.reduce((roomNumbers, booking) => {
+      roomNumbers.push(booking.roomNumber);
+      return roomNumbers;
+    }, [])
+  },
+
   displayTotalSpent(roomNumbers) {
     let totalSpentField = document.getElementById('user-total-spent');
     let currentUserTotal = this.roomsData.calculateTotalSpent(roomNumbers);
@@ -167,6 +174,12 @@ const domUpdates = {
   checkManagerLogin() {
     let usernameInput = document.getElementById('username-input');
     return (usernameInput.value === 'manager')
+  },
+
+  displayTotalRevenue() {
+    let totalRevenueField = document.getElementById('today-revenue');
+    let totalRevenue = this.roomsData.calculateTotalSpent(this.findBookingsByDate(this.today));
+    totalSpentField.innerText = `$${currentUserTotal}`;
   },
 }
 

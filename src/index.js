@@ -33,6 +33,7 @@ function validateUsername() {
     let currentUserID = domUpdates.checkCustomerLogin().createCustomer;
     createCustomer(currentUserID)
     domUpdates.showCustomerDashboard();
+    updateCustomerDisplay();
   } else {
     domUpdates.displayLoginError();
   }
@@ -60,16 +61,13 @@ function createHotelData(usersData, roomsData, bookingsData) {
   domUpdates.usersData = new CustomerData(usersData);
   domUpdates.roomsData = new RoomsData(roomsData);
   domUpdates.bookingsData = new BookingsData(bookingsData);
-  createCustomer(13);
-
-  //This code creates a dummy user while I set up Customer Dashboard with real data.
-  updateCustomerDisplay();
 }
 
 function updateCustomerDisplay() {
   domUpdates.retrieveCurrentCustomerBookings();
   domUpdates.displayBookingData();
-  domUpdates.displayTotalSpent([1]);
+  domUpdates.displayTotalSpent(domUpdates.createRoomNumbersArray())
+  console.log(domUpdates)
 }
 
 function clearSearchResults() {
