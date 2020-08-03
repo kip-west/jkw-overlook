@@ -103,6 +103,21 @@ const domUpdates = {
     return `<li>Date: ${booking.date}; Room Number: ${booking.roomNumber}</li>`
   },
 
+  createVacantRoomCard(room) {
+    return `<div class="vacant-room-card" id=${room.number}>
+      <h3><span id="room-card-roomType">${room.Type}</span></h3>
+      <hr>
+      <p>Bidet: <span id="room-card-bidet">${room.bidet}</span></p>
+      <p>Bed Size: <span id="room-card-bedSize">${room.bedSize}<span></p>
+      <p>Number of Beds: <span id="room-card-numBeds">${room.numBeds}</span></p>
+      <hr>
+      <div>
+        <h3><span id="room-card-costPerNight">${room.costPerNight}</span> per night</h3>
+        <button class="book-room" id=${room.number}>Book Room</button>
+      </div>
+    </div>`
+  },
+
   displayTotalSpent(roomNumbers) {
     let totalSpentField = document.getElementById('user-total-spent');
     let currentUserTotal = this.roomsData.calculateTotalSpent(roomNumbers);
