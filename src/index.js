@@ -8,6 +8,7 @@ import CustomerData from '../src/CustomerData';
 import RoomsData from '../src/RoomsData';
 import BookingsData from '../src/BookingsData';
 import Moment from 'moment';
+import Manager from '../src/Manager'
 
 // An example of how you tell webpack to use an image (also need to link to it in the index.html)
 import './images/turing-logo.png';
@@ -26,9 +27,9 @@ clearResultsButton.addEventListener("click", clearSearchResults)
 
 function validateUsername() {
   if (domUpdates.checkManagerLogin()) {
+    createManager();
     domUpdates.showManagerDashboard();
   } else if (domUpdates.checkCustomerLogin().isValid) {
-    //Eventually, instantiate the customer based on their id -jkw 8/1/20 @6:15 PM
     let currentUserID = domUpdates.checkCustomerLogin().createCustomer;
     createCustomer(currentUserID)
     domUpdates.showCustomerDashboard();
@@ -49,6 +50,10 @@ function validateLogin() {
 /*----------Create Current User Functions----------*/
 function createCustomer(id) {
   domUpdates.currentUser = domUpdates.usersData.findUserByID(id);
+}
+
+function createManager() {
+  domUpdates.currentUser = new Manager({ id: 'Manager', name: 'Manager'})
 }
 
 function createHotelData(usersData, roomsData, bookingsData) {
