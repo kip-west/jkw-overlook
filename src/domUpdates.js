@@ -1,11 +1,12 @@
 import Moment from 'moment';
+Moment().format('YYYYMMDD');
 
 const domUpdates = {
   usersData: null,
   roomsData: null,
   bookingsData: null,
   currentUser: null,
-  today: /*new Date()*/ '2020/01/30',
+  today: '2020/01/30',
 
   hideAll() {
     let dashboards = document.querySelectorAll('.dashboard');
@@ -68,16 +69,33 @@ const domUpdates = {
   },
 
   sortCurrentCustomerBookings() {
-    let sortedBookings = this.currentUser.bookings.sort((a, b) => new Moment(a).format('YYYMMDD') - new Moment(b).format('YYYMMDD'));
+    let sortedBookings = this.currentUser.bookings.sort((a, b) => new Moment(a.date).format('YYYMMDD') - new Moment(b.date).format('YYYMMDD'));
     this.currentUser.bookings = sortedBookings;
-    console.log(sortedBookings)
+  },
+
+  separateCurrentBookings() {
+    let separatedBookings = this.currentUser.bookings.reduce((separatedBookingsAcc, booking) => {
+      if (booking.date > this.today) {
+        separatedBookingsAcc.upcomingBookings.push(booking)
+      } else if (booking.date < this.today) {
+        separatedBookingsAcc.pastBookings.push(booking)
+      }
+      return separatedBookingsAcc
+    }, { pastBookings: [], upcomingBookings: [] })
+    return separatedBookings;
   },
 
   displayBookingData() {
-    let upcomingReservationsField = document.getElementById('upcoming-bookings');
     this.sortCurrentCustomerBookings();
-    this.currentUser.bookings.map(booking => {
-      return upcomingReservationsField.insertAdjacentHTML('afterbegin', this.createBookingListItem(booking))
+    let separatedBookings = this.separateCurrentBookings();
+    let upcomingReservationsList = document.getElementById('upcoming-bookings');
+    separatedBookings.upcomingBookings.map(booking => {
+      return upcomingReservationsList.insertAdjacentHTML('afterbegin', this.createBookingListItem(booking))
+    })
+
+    let pastReservationsList = document.getElementById('past-bookings');
+    separatedBookings.pastBookings.map(booking => {
+      return pastReservationsList.insertAdjacentHTML('afterbegin', this.createBookingListItem(booking))
     })
   },
 
