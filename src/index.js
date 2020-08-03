@@ -7,8 +7,7 @@ import domUpdates from '../src/domUpdates';
 import CustomerData from '../src/CustomerData';
 import RoomsData from '../src/RoomsData';
 import BookingsData from '../src/BookingsData';
-import moment from 'moment';
-moment().format();
+import Moment from 'moment';
 
 // An example of how you tell webpack to use an image (also need to link to it in the index.html)
 import './images/turing-logo.png';
@@ -95,13 +94,14 @@ function addListenersBookRoom() {
 
 function bookRoomClickHandler(event) {
   let selectDateInput = document.getElementById('select-date').value;
+  let selectDateInputMoment = new Moment(selectDateInput).format('YYYY/MM/DD')
   let postBody = {
-    'userID': domUpdates.currentUser.id,
-    'date': selectDateInput,
-    'roomNumber': event.target.id
+    "userID": domUpdates.currentUser.id,
+    "date": selectDateInputMoment,
+    "roomNumber": parseInt(event.target.id)
   }
 
-  return postBody;
+  postBookingData(postBody);
 }
 
 /*----------GET/POST/DELETE Functions----------*/
@@ -117,6 +117,7 @@ function getDataFromServer() {
 }
 
 function postBookingData(bookingObject) {
+  console.log(bookingObject);
   fetch('https://fe-apps.herokuapp.com/api/v1/overlook/1904/bookings/bookings', {
     method: 'POST',
     headers: {
