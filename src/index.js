@@ -8,6 +8,7 @@ import CustomerData from '../src/CustomerData';
 import RoomsData from '../src/RoomsData';
 import BookingsData from '../src/BookingsData';
 import Moment from 'moment';
+import Manager from '../src/Manager'
 
 // An example of how you tell webpack to use an image (also need to link to it in the index.html)
 import './images/turing-logo.png';
@@ -26,13 +27,19 @@ clearResultsButton.addEventListener("click", clearSearchResults)
 
 function validateUsername() {
   if (domUpdates.checkManagerLogin()) {
+    createManager();
     domUpdates.showManagerDashboard();
-  } else if (domUpdates.checkCustomerLogin().isValid) {
-    //Eventually, instantiate the customer based on their id -jkw 8/1/20 @6:15 PM
+    updateManagerDisplay();
+  }
+
+  else if (domUpdates.checkCustomerLogin().isValid) {
     let currentUserID = domUpdates.checkCustomerLogin().createCustomer;
     createCustomer(currentUserID)
     domUpdates.showCustomerDashboard();
-  } else {
+    updateCustomerDisplay();
+  }
+
+  else {
     domUpdates.displayLoginError();
   }
 }
@@ -51,20 +58,26 @@ function createCustomer(id) {
   domUpdates.currentUser = domUpdates.usersData.findUserByID(id);
 }
 
+function createManager() {
+  domUpdates.currentUser = new Manager({ id: 'Manager', name: 'Manager'})
+}
+
 function createHotelData(usersData, roomsData, bookingsData) {
   domUpdates.usersData = new CustomerData(usersData);
   domUpdates.roomsData = new RoomsData(roomsData);
   domUpdates.bookingsData = new BookingsData(bookingsData);
-  createCustomer(13);
-
-  //This code creates a dummy user while I set up Customer Dashboard with real data.
-  updateCustomerDisplay();
 }
 
 function updateCustomerDisplay() {
   domUpdates.retrieveCurrentCustomerBookings();
   domUpdates.displayBookingData();
-  domUpdates.displayTotalSpent([1]);
+  domUpdates.displayTotalSpent(domUpdates.createRoomNumbersArray(domUpdates.currentUser.bookings))
+  console.log(domUpdates)
+}
+
+function updateManagerDisplay() {
+  domUpdates.displayTotalRevenue();
+  domUpdates.displayVacancyData();
 }
 
 function clearSearchResults() {

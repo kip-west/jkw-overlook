@@ -6,7 +6,7 @@ const domUpdates = {
   roomsData: null,
   bookingsData: null,
   currentUser: null,
-  today: '2020/01/30',
+  today: '2020/02/10',
 
   hideAll() {
     let dashboards = document.querySelectorAll('.dashboard');
@@ -68,10 +68,17 @@ const domUpdates = {
     this.currentUser.bookings = currentUserBookings;
   },
 
+  createRoomNumbersArray(bookings) {
+    return bookings.reduce((roomNumbers, booking) => {
+      roomNumbers.push(booking.roomNumber);
+      return roomNumbers;
+    }, [])
+  },
+
   displayTotalSpent(roomNumbers) {
     let totalSpentField = document.getElementById('user-total-spent');
     let currentUserTotal = this.roomsData.calculateTotalSpent(roomNumbers);
-    totalSpentField.innerText = `$${currentUserTotal}`;
+    totalSpentField.innerText = `$${currentUserTotal.toFixed(2)}`;
   },
 
   sortCurrentCustomerBookings() {
@@ -167,6 +174,25 @@ const domUpdates = {
   checkManagerLogin() {
     let usernameInput = document.getElementById('username-input');
     return (usernameInput.value === 'manager')
+  },
+
+  displayTotalRevenue() {
+    let totalRevenueField = document.getElementById('today-revenue');
+    let todaysBookings = this.bookingsData.findBookingsByDate(this.today);
+    let todaysRoomNumbers = this.createRoomNumbersArray(todaysBookings)
+    let totalRevenue =  this.roomsData.calculateTotalSpent(todaysRoomNumbers);
+    totalRevenueField.innerText = `$${totalRevenue.toFixed(2)}`;
+  },
+
+  displayVacancyData() {
+    let numberRoomsVacantField = document.getElementById('number-rooms-vacant');
+    let todaysVacantRooms = this.findVacantRooms(this.today);
+    let numRoomsVacant = todaysVacantRooms.length;
+    numberRoomsVacantField.innerText = numRoomsVacant;
+
+    let percentRoomsVacantField = document.getElementById('percent-rooms-vacant');
+    let percentRoomsVacant = `${((numRoomsVacant / this.roomsData.rooms.length) * 100)}%`;
+    percentRoomsVacantField.innerText = percentRoomsVacant;
   },
 }
 

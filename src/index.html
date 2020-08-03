@@ -12,7 +12,7 @@
       <span class="user-info">Welcome!</span>
     </header>
     <main>
-      <section class="dashboard login-dashboard hidden">
+      <section class="dashboard login-dashboard">
         <div class="login-container">
           <form class="login-form">
             <h2>Login</h2>
@@ -28,7 +28,7 @@
           </form>
         </div>
       </section>
-      <section class="dashboard customer-dashboard">
+      <section class="dashboard customer-dashboard hidden">
         <div class="customer-data">
           <section class="user-total">
             <h2>You have spent
@@ -91,7 +91,7 @@
           <section class="today-revenue">
             <h2>The Overlook has a total of
             <br>
-            <span class="widget-number">$9456.56</span>
+            <span class="widget-number" id="today-revenue"></span>
             <br>
             in revenue today.
           </section>
@@ -99,8 +99,7 @@
           <section class="total-rooms-available">
             <h2 class="widget-font">Today,
             <br>
-            <span class="widget-number"> 12
-            </span>
+            <span class="widget-number" id="number-rooms-vacant"></span>
             <br>
             rooms are vacant.
             </h2>
@@ -109,7 +108,7 @@
           <section class="percentage-rooms-available">
             <h2 class=widget-font>Today,
             <br>
-            <span class="widget-number">43%</span>
+            <span class="widget-number" id="percent-rooms-vacant"></span>
             <br>
             of all rooms are vacant.
             </h2>
