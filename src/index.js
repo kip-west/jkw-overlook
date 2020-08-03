@@ -18,10 +18,11 @@ let today = new Date();
 window.onload = getDataFromServer();
 
 const loginSubmitButton = document.getElementById("submit-login");
-loginSubmitButton.addEventListener("click", validateLogin);
 const searchRoomsButton = document.getElementById("searchRooms-button");
-searchRoomsButton.addEventListener("click", searchRooms);
 const clearResultsButton = document.getElementById("clear-searchRooms-button");
+
+loginSubmitButton.addEventListener("click", validateLogin);
+searchRoomsButton.addEventListener("click", searchRooms);
 clearResultsButton.addEventListener("click", clearSearchResults)
 
 function validateUsername() {
@@ -81,6 +82,26 @@ function searchRooms() {
   } else if (selectDateInput && !roomTypeInput) {
     domUpdates.displayVacantRoomsDate();
   }
+
+  addListenersBookRoom();
+}
+
+function addListenersBookRoom() {
+  let bookRoomButtons = document.querySelectorAll('.book-room');
+  for (let i = 0; i < bookRoomButtons.length; i++) {
+    bookRoomButtons[i].addEventListener('click', bookRoomClickHandler);
+  }
+}
+
+function bookRoomClickHandler(event) {
+  let selectDateInput = document.getElementById('select-date').value;
+  let postBody = {
+    'userID': domUpdates.currentUser.id,
+    'date': selectDateInput,
+    'roomNumber': event.target.id
+  }
+
+  return postBody;
 }
 
 /*----------GET/POST/DELETE Functions----------*/
@@ -95,7 +116,7 @@ function getDataFromServer() {
   .catch(err => console.error(err))
 }
 
-function bookRoom(bookingObject) {
+function postBookingData(bookingObject) {
   fetch('https://fe-apps.herokuapp.com/api/v1/overlook/1904/bookings/bookings', {
     method: 'POST',
     headers: {
