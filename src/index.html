@@ -12,23 +12,24 @@
       <span class="user-info">Welcome!</span>
     </header>
     <main>
-      <section class="dashboard login-dashboard hidden">
+      <section class="dashboard login-dashboard">
         <div class="login-container">
           <form class="login-form">
             <h2>Login</h2>
             <div class="login-field username-field">
-              <label for="username" class="login-form-label">Username:</label><br>
+              <label for="username-input" class="login-form-label">Username:</label><br>
               <input type="text" name="username" id="username-input" placeholder="Please enter your username">
             </div>
             <div class="login-field password-field">
-              <label for="password" class="login-form-label">Password:</label><br>
+              <label for="password-input" class="login-form-label">Password:</label><br>
               <input type="password" name="password" id="password-input" placeholder="Please enter your password">
             </div>
             <input value="Login" id="submit-login" type="submit">
           </form>
         </div>
       </section>
-      <section class="dashboard customer-dashboard hidden">
+      <!-- Add hidden to customer-dashboard-->
+      <section class="dashboard customer-dashboard">
         <div class="customer-data">
           <section class="user-total">
             <h2>You have spent
@@ -41,18 +42,14 @@
 
           <section class="upcoming-reservations">
             <h2 class="widget-font">We look forward to seeing you on:
-            <ul>
-              <span class="bookings-list" id="upcoming-bookings">
-              </span>
+            <ul class="bookings-list" id="upcoming-bookings">
             </ul>
             </h2>
           </section>
 
           <section class="past-reservations">
             <h2 class=widget-font>How were your recent stays from:
-              <ul>
-                <span class="bookings-list" id="past-bookings">
-                </span>
+              <ul class="bookings-list" id="past-bookings">
               </ul>
             </h2>
           </section>
@@ -86,6 +83,7 @@
           </section>
         </div>
       </section>
+            <!-- Add hidden to manager-dashboard-->
       <section class="dashboard manager-dashboard">
         <div class="manager-data">
           <section class="today-revenue">
@@ -119,7 +117,7 @@
           <h2>Search Users</h2>
           <form class="searchUsers-form">
             <div class="searchRooms-field roomType-field">
-              <label for="select-user-byName" class="select-User-label">Enter User Name</label>
+              <label for="select-user-by-name" class="select-User-label">Enter User Name</label>
               <input list="users-dropdown" name="select-user-by-name" id="select-user-by-name">
               <datalist id="users-dropdown">
               </datalist>
@@ -130,7 +128,8 @@
             </div>
           </form>
           <section class="searchUsers-results">
-            <div class="user-card hidden">
+                  <!-- Add hidden to user-card-->
+            <div class="user-card">
               <section class="user-profile">
                 <h3 class="user-profile-header">
                   <span id="user-profile-name"></span> has spent<br>
@@ -146,11 +145,12 @@
                 <form class="add-booking-form">
                   <div class="choose-date-container">
                     <h3>Book a Room for <span class="found-user"></span></h3>
-                      <label for="select-date-input" class="select-date-input-label">Select Date</label>
+                      <label for="select-date-for-booking" class="select-date-input-label">Select Date</label>
                       <input type="date" value="select-date-input" id="select-date-for-booking">
                       <input type="submit" value="Find Open Rooms" id="select-date-button">
                   </div>
-                  <div class="hidden" id="select-room-container">
+                        <!-- Add hidden to div below-->
+                  <div id="select-room-container">
                     <label for="select-room-input" class="select-date-input-label">Select Room</label>
                     <input list="rooms-dropdown" name="select-room-input" id="select-room-input">
                     <input type="submit" value="Select Room Number" id="select-room-button">
@@ -158,7 +158,8 @@
 
                     </datalist>
                   </div>
-                  <div class="modify-booking-button-container hidden">
+                        <!-- Add hidden to div below-->
+                  <div class="modify-booking-button-container">
                     <input id="book-room-manager" value="Book Room" type="submit">
                     <input id="clear-form-manager" value="Clear Form" type="reset">
                   </div>
