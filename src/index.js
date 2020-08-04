@@ -20,10 +20,12 @@ window.onload = getDataFromServer();
 const loginSubmitButton = document.getElementById("submit-login");
 const searchRoomsButton = document.getElementById("searchRooms-button");
 const clearResultsButton = document.getElementById("clear-searchRooms-button");
+const searchUserButton = document.getElementById("searchUsers-button");
 
 loginSubmitButton.addEventListener("click", validateLogin);
 searchRoomsButton.addEventListener("click", searchRooms);
 clearResultsButton.addEventListener("click", clearSearchResults)
+searchUserButton.addEventListener("click", searchUsers);
 
 function validateUsername() {
   if (domUpdates.checkManagerLogin()) {
@@ -97,6 +99,11 @@ function searchRooms() {
   }
 
   addListenersBookRoom();
+}
+
+function searchUsers() {
+  event.preventDefault();
+  domUpdates.createUserProfileCard();
 }
 
 function addListenersBookRoom() {
