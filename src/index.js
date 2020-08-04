@@ -26,6 +26,7 @@ const selectDateInput = document.getElementById("select-date-for-booking");
 const findOpenRoomButton = document.getElementById("select-date-button");
 const selectOpenRoomButton = document.getElementById("select-room-button");
 const bookRoomManagerButton = document.getElementById('book-room-manager');
+const bookingsList = document.getElementById("list-of-bookings")
 
 loginSubmitButton.addEventListener("click", validateLogin);
 searchRoomsButton.addEventListener("click", searchRooms);
@@ -35,6 +36,7 @@ clearUserButton.addEventListener("click", clearUserProfile);
 findOpenRoomButton.addEventListener("click", findRoomToBook);
 selectOpenRoomButton.addEventListener("click", domUpdates.showManagerBookRoomButtons);
 bookRoomManagerButton.addEventListener("click", bookRoomManager);
+bookingsList.addEventListener("click", deleteBooking)
 
 function validateUsername() {
   if (domUpdates.checkManagerLogin()) {
@@ -134,6 +136,18 @@ function bookRoomManager() {
   postBookingData(postBody);
 }
 
+function deleteBooking(event) {
+  if(event.target.localName === "button") {
+    confirm("Are you sure you want to delete this booking?");
+    let bookingID = parseInt(event.target.id);
+    let bookingBody = {
+      "id": bookingID
+    }
+    deleteData(bookingBody);
+    console.log(bookingBody)
+  }
+}
+
 function bookRoomClickHandler(event) {
   let selectDateInput = document.getElementById('select-date').value;
   let selectDateInputMoment = new Moment(selectDateInput).format('YYYY/MM/DD')
@@ -166,16 +180,28 @@ function getDataFromServer() {
   .then(responses => Promise.all(responses.map(response => response.json())))
   .then(([usersData, roomsData, bookingsData]) => createHotelData(usersData, roomsData, bookingsData))
   .catch(err => console.error(err))
-}
+};
 
-function postBookingData(bookingObject) {
-  console.log(bookingObject);
+function postBookingData(booking) {
   fetch('https://fe-apps.herokuapp.com/api/v1/overlook/1904/bookings/bookings', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
     },
-    body: JSON.stringify(bookingObject)
+    body: JSON.stringify(booking)
+  })
+  .then(response => console.log(response.status))
+  .then(response => window.alert(`Room ${booking.roomNumber} Booked`))
+  .catch(err => console.error(err))
+};
+
+function deleteData(booking) {
+  fetch('https://fe-apps.herokuapp.com/api/v1/overlook/1904/bookings/bookings', {
+    method: 'DELETE',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(booking)
   })
   .then(response => console.log(response.status))
   .catch(err => console.error(err))

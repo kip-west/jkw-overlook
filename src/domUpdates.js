@@ -215,16 +215,35 @@ const domUpdates = {
     let profileCardHeader = document.getElementById('user-profile-name');
     profileCardHeader.innerHTML = '';
 
+    let bookRoomForName = document.querySelector('.found-user');
+    bookRoomForName.innerHTML = '';
+
     let profileListOfBookings = document.getElementById('list-of-bookings');
     profileListOfBookings.innerHTML = '';
   },
 
+  addDeleteButton(booking) {
+    let bookingDate = booking.date;
+    let bookingDateMoment = new Moment(booking.date).format("YYYYMMDD")
+    let todayMoment = new Moment(this.today).format("YYYYMMDD")
+
+    let deleteButton;
+    if(bookingDateMoment > todayMoment) {
+      deleteButton = `<button class="deleteBooking" id="${booking.id}">Delete</button>`
+    } else {
+      deleteButton = ``
+    }
+    console.log(deleteButton)
+    return deleteButton
+  },
+
   createBookingsHTMLManagerDash(booking) {
     let foundRoom = this.roomsData.rooms.find(room => room.number === booking.roomNumber);
+    let deleteButton = this.addDeleteButton(booking);
     let bookingHTML = `
       <li class="booking-list-item" id="${booking.id}">
         ${booking.date}; ${foundRoom.roomType}
-        <button class="deleteBooking" id="${booking.id}">Delete</button>
+        ${deleteButton}
       </li>`;
 
     return bookingHTML;
@@ -248,6 +267,7 @@ const domUpdates = {
     bookRoomForName.insertAdjacentHTML('afterbegin', `<h3 id=${foundUser.id}>${foundUser.name}</h3>`)
 
     let selectedUsersBookings = this.bookingsData.findBookingsByUser(foundUser.id);
+    selectedUsersBookings.sort((a, b) => new Moment(a.date).format('YYYYMMDD') - new Moment(b.date).format('YYYYMMDD'));
 
     let profileCardTotal = document.getElementById('user-profile-total');
     profileCardTotal.innerText = this.createProfileCardTotal(selectedUsersBookings);
@@ -256,7 +276,7 @@ const domUpdates = {
     selectedUsersBookings.map(booking => {
       let bookingHTML = this.createBookingsHTMLManagerDash(booking);
       profileListOfBookings.insertAdjacentHTML('afterbegin', bookingHTML)
-    })
+    });
   },
 
   createOpenRoomHTML(date) {
@@ -308,7 +328,7 @@ const domUpdates = {
     }
 
     return postBody
-  }
+  },
 }
 
 export default domUpdates;
