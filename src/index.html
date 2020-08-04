@@ -143,20 +143,24 @@
               </section>
               <hr>
               <section class="add-booking-for-user">
-                <h3>Book a Room</h3>
                 <form class="add-booking-form">
-                  <label for="select-date-input" class="select-date-input-label">Select Date</label>
-                  <input value="select-date-input" id="select-date-for-booking" type="date">
-                  <label for="select-room-input" class="select-date-input-label">Select Room</label>
-                  <input list="rooms" name="select-room-input" id="select-room-input">
-                  <datalist id="rooms">
-                    <option value="Room Number 1">
-                    <option value="Room Number 2">
-                    <option value="Room Number 3">
-                  </datalist>
-                  <div class="modify-booking-button-container">
-                    <input value="Book Room" type="submit">
-                    <input value="Clear Form" type="reset">
+                  <div class="choose-date-container">
+                    <h3>Book a Room for <span class="found-user"></span></h3>
+                      <label for="select-date-input" class="select-date-input-label">Select Date</label>
+                      <input type="date" value="select-date-input" id="select-date-for-booking">
+                      <input type="submit" value="Find Open Rooms" id="select-date-button">
+                  </div>
+                  <div class="hidden" id="select-room-container">
+                    <label for="select-room-input" class="select-date-input-label">Select Room</label>
+                    <input list="rooms-dropdown" name="select-room-input" id="select-room-input">
+                    <input type="submit" value="Select Room Number" id="select-room-button">
+                    <datalist id="rooms-dropdown">
+
+                    </datalist>
+                  </div>
+                  <div class="modify-booking-button-container hidden">
+                    <input id="book-room-manager" value="Book Room" type="submit">
+                    <input id="clear-form-manager" value="Clear Form" type="reset">
                   </div>
                 </form>
               </section>

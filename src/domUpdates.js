@@ -6,7 +6,7 @@ const domUpdates = {
   roomsData: null,
   bookingsData: null,
   currentUser: null,
-  today: '2020/02/10',
+  today: '2020/08/07',
 
   hideAll() {
     let dashboards = document.querySelectorAll('.dashboard');
@@ -82,7 +82,6 @@ const domUpdates = {
   },
 
   sortCurrentCustomerBookings() {
-    console.log(this.currentUser.bookings)
     let sortedBookings = this.currentUser.bookings.sort((a, b) => new Moment(a.date).format('YYYYMMDD') - new Moment(b.date).format('YYYYMMDD'));
     this.currentUser.bookings = sortedBookings;
   },
@@ -227,15 +226,15 @@ const domUpdates = {
         ${booking.date}; ${foundRoom.roomType}
         <button class="deleteBooking" id="${booking.id}">Delete</button>
       </li>`;
-    console.log(bookingHTML)
+
     return bookingHTML;
   },
 
   createProfileCardTotal(bookings) {
     let roomNumbers = this.createRoomNumbersArray(bookings);
-    console.log(roomNumbers);
+
     let profileCardTotal = this.roomsData.calculateTotalSpent(roomNumbers);
-    console.log(profileCardTotal)
+
     return `$${profileCardTotal.toFixed(2)}`;
   },
 
@@ -245,6 +244,8 @@ const domUpdates = {
 
     let profileCardName = document.getElementById('user-profile-name');
     profileCardName.insertAdjacentHTML('afterbegin', foundUser.name);
+    let bookRoomForName = document.querySelector('.found-user');
+    bookRoomForName.insertAdjacentHTML('afterbegin', `<h3 id=${foundUser.id}>${foundUser.name}</h3>`)
 
     let selectedUsersBookings = this.bookingsData.findBookingsByUser(foundUser.id);
 
@@ -256,6 +257,57 @@ const domUpdates = {
       let bookingHTML = this.createBookingsHTMLManagerDash(booking);
       profileListOfBookings.insertAdjacentHTML('afterbegin', bookingHTML)
     })
+  },
+
+  createOpenRoomHTML(date) {
+    let availableRooms = this.findVacantRooms(date);
+
+    return availableRooms.map(room => `<option value="${room.number}">`).join('')
+  },
+
+  addOpenRoomsDropdown(date) {
+    let selectRoomInput = document.getElementById('select-room-container');
+    selectRoomInput.classList.remove('hidden');
+    let availableRoomsHTML = this.createOpenRoomHTML(date);
+    console.log(availableRoomsHTML)
+
+    let roomsDropdown = document.getElementById('rooms-dropdown');
+    roomsDropdown.innerText = '';
+    roomsDropdown.insertAdjacentHTML('afterbegin', availableRoomsHTML);
+  },
+
+  bookRoomSelectDate() {
+    let newBookingDate = document.getElementById('select-date-for-booking').value;
+    newBookingDate = newBookingDate.replace(/-/g, "/");
+
+    this.addOpenRoomsDropdown(newBookingDate);
+  },
+
+  showManagerBookRoomButtons() {
+    event.preventDefault()
+    let roomsDropdownInput = document.getElementById('select-room-input');
+    let bookRoomButtons = document.querySelector('.modify-booking-button-container');
+
+    if(roomsDropdownInput) {
+      bookRoomButtons.classList.remove('hidden');
+    }
+  },
+
+  createManagerPOSTBody() {
+    let selectedUserName = document.getElementById('select-user-by-name').value;
+    let foundUser = this.usersData.findUserByName(selectedUserName);
+    let userID = foundUser.id;
+    let roomsDropdownInput = document.getElementById('select-room-input').value;
+    let selectDateInput = document.getElementById('select-date-for-booking').value;
+    let selectDateInputMoment = new Moment(selectDateInput).format('YYYY/MM/DD')
+
+    let postBody = {
+      "userID": userID,
+      "date": selectDateInputMoment,
+      "roomNumber": parseInt(roomsDropdownInput)
+    }
+
+    return postBody
   }
 }
 

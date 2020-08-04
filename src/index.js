@@ -21,13 +21,20 @@ const loginSubmitButton = document.getElementById("submit-login");
 const searchRoomsButton = document.getElementById("searchRooms-button");
 const clearResultsButton = document.getElementById("clear-searchRooms-button");
 const searchUserButton = document.getElementById("searchUsers-button");
-const clearUserButton = document.getElementById("clear-searchUsers-button")
+const clearUserButton = document.getElementById("clear-searchUsers-button");
+const selectDateInput = document.getElementById("select-date-for-booking");
+const findOpenRoomButton = document.getElementById("select-date-button");
+const selectOpenRoomButton = document.getElementById("select-room-button");
+const bookRoomManagerButton = document.getElementById('book-room-manager');
 
 loginSubmitButton.addEventListener("click", validateLogin);
 searchRoomsButton.addEventListener("click", searchRooms);
 clearResultsButton.addEventListener("click", clearSearchResults);
 searchUserButton.addEventListener("click", searchUsers);
-clearUserButton.addEventListener("click", clearUserProfile)
+clearUserButton.addEventListener("click", clearUserProfile);
+findOpenRoomButton.addEventListener("click", findRoomToBook);
+selectOpenRoomButton.addEventListener("click", domUpdates.showManagerBookRoomButtons);
+bookRoomManagerButton.addEventListener("click", bookRoomManager);
 
 function validateUsername() {
   if (domUpdates.checkManagerLogin()) {
@@ -124,6 +131,13 @@ function addListenersBookRoom() {
   }
 }
 
+function bookRoomManager() {
+  event.preventDefault()
+  let postBody = domUpdates.createManagerPOSTBody();
+
+  postBookingData(postBody);
+}
+
 function bookRoomClickHandler(event) {
   let selectDateInput = document.getElementById('select-date').value;
   let selectDateInputMoment = new Moment(selectDateInput).format('YYYY/MM/DD')
@@ -134,6 +148,16 @@ function bookRoomClickHandler(event) {
   }
 
   postBookingData(postBody);
+}
+
+function findRoomToBook() {
+  event.preventDefault();
+  domUpdates.bookRoomSelectDate();
+}
+
+function bookRoom() {
+  event.preventDefault();
+  domUpdates.createPostBody();
 }
 
 /*----------GET/POST/DELETE Functions----------*/
