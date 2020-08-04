@@ -1,0 +1,8 @@
+@mixin widgetStyle ($display, $direction) {
+  align-items: center;
+  background-color: $widget-color;
+  border-radius: 15px;
+  display: $display;
+  flex-direction: $direction;
+  justify-content: center;
+}
