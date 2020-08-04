@@ -292,16 +292,22 @@ const domUpdates = {
       bookRoomButtons.classList.remove('hidden');
     }
   },
-  //
-  // addEventListeners() {
-  //   let bookRoomManagerButton = document.getElementById('book-room-manager');
-  //   let clearFormManagerButton = document.getElementById('clear-form-manager');
-  //
-  //   bookRoomManagerButton.addEventListener("click", domUpdates.createManagerPOSTBody);
-  // },
 
   createManagerPOSTBody() {
+    let selectedUserName = document.getElementById('select-user-by-name').value;
+    let foundUser = this.usersData.findUserByName(selectedUserName);
+    let userID = foundUser.id;
+    let roomsDropdownInput = document.getElementById('select-room-input').value;
+    let selectDateInput = document.getElementById('select-date-for-booking').value;
+    let selectDateInputMoment = new Moment(selectDateInput).format('YYYY/MM/DD')
 
+    let postBody = {
+      "userID": userID,
+      "date": selectDateInputMoment,
+      "roomNumber": parseInt(roomsDropdownInput)
+    }
+
+    return postBody
   }
 }
 
