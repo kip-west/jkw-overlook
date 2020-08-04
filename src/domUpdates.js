@@ -244,6 +244,8 @@ const domUpdates = {
 
     let profileCardName = document.getElementById('user-profile-name');
     profileCardName.insertAdjacentHTML('afterbegin', foundUser.name);
+    let bookRoomForName = document.querySelector('.found-user');
+    bookRoomForName.insertAdjacentHTML('afterbegin', `<h3 id=${foundUser.id}>${foundUser.name}</h3>`)
 
     let selectedUsersBookings = this.bookingsData.findBookingsByUser(foundUser.id);
 
@@ -280,6 +282,27 @@ const domUpdates = {
 
     this.addOpenRoomsDropdown(newBookingDate);
   },
+
+  showManagerBookRoomButtons() {
+    event.preventDefault()
+    let roomsDropdownInput = document.getElementById('select-room-input');
+    let bookRoomButtons = document.querySelector('.modify-booking-button-container');
+
+    if(roomsDropdownInput) {
+      bookRoomButtons.classList.remove('hidden');
+    }
+  },
+  //
+  // addEventListeners() {
+  //   let bookRoomManagerButton = document.getElementById('book-room-manager');
+  //   let clearFormManagerButton = document.getElementById('clear-form-manager');
+  //
+  //   bookRoomManagerButton.addEventListener("click", domUpdates.createManagerPOSTBody);
+  // },
+
+  createManagerPOSTBody() {
+
+  }
 }
 
 export default domUpdates;
