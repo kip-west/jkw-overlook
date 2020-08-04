@@ -202,8 +202,19 @@ span {
 }
 
 .bookings-list {
+  color: $red-color;
   display: flex;
   justify-content: center;
+  height: 25vh;
+  overflow: scroll;
+  padding: 2%;
+  list-style-type: none;
+  margin: 0;
+}
+
+.bookings-list li {
+  padding: 8px 16px;
+  border: 1px solid #CCCCCC;
 }
 
 #list-of-bookings {
