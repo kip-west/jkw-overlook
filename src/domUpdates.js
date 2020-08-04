@@ -217,6 +217,17 @@ const domUpdates = {
     profileCardHeader.removeChild(profileCardHeader.childNodes[0]);
   },
 
+  createBookingsHTMLManagerDash(booking) {
+    let foundRoom = this.roomsData.rooms.find(room => room.number === booking.roomNumber);
+    let bookingHTML = `
+      <li class="booking-list-item" id="${booking.id}">
+        ${booking.date}; ${foundRoom.roomType}
+        <button class="deleteBooking" id="${booking.id}">Delete</button>
+      </li>`;
+    console.log(bookingHTML)
+    return bookingHTML;
+  },
+
   createUserProfileCard() {
     let selectedUserName = document.getElementById('select-user-by-name').value;
     let foundUser = this.usersData.findUserByName(selectedUserName);
@@ -224,6 +235,14 @@ const domUpdates = {
 
     let profileCardHeader = document.getElementById('user-name');
     profileCardHeader.insertAdjacentHTML('afterbegin', foundUser.name)
+
+    let profileListOfBookings = document.getElementById('list-of-bookings');
+    let selectedUsersBookings = this.bookingsData.findBookingsByUser(foundUser.id);
+    console.log(selectedUsersBookings)
+    selectedUsersBookings.map(booking => {
+      let bookingHTML = this.createBookingsHTMLManagerDash(booking);
+      profileListOfBookings.insertAdjacentHTML('afterbegin', bookingHTML)
+    })
   }
 }
 
