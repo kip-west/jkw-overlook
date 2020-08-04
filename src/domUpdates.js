@@ -194,6 +194,16 @@ const domUpdates = {
     let percentRoomsVacant = `${((numRoomsVacant / this.roomsData.rooms.length) * 100)}%`;
     percentRoomsVacantField.innerText = percentRoomsVacant;
   },
+
+  createUserListOptions() {
+    let userDataList = document.getElementById('users-dropdown');
+    let allUsers = this.usersData.users;
+    let alphabetizedUsers = allUsers.sort((a, b) => a.name > b.name ? 1 : -1)
+    let allUsersHTML = alphabetizedUsers.map(user => `<option id="${user.id}">${user.name}</option>`).join('');
+
+    userDataList.insertAdjacentHTML('afterbegin', allUsersHTML);
+    console.log(userDataList)
+  }
 }
 
 export default domUpdates;

@@ -78,6 +78,7 @@ function updateCustomerDisplay() {
 function updateManagerDisplay() {
   domUpdates.displayTotalRevenue();
   domUpdates.displayVacancyData();
+  domUpdates.createUserListOptions();
 }
 
 function clearSearchResults() {
