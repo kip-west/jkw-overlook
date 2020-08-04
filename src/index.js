@@ -70,6 +70,10 @@ function createHotelData(usersData, roomsData, bookingsData) {
   domUpdates.usersData = new CustomerData(usersData);
   domUpdates.roomsData = new RoomsData(roomsData);
   domUpdates.bookingsData = new BookingsData(bookingsData);
+
+/* Remove these lines of code when Manager Dashboard is finished */
+  createManager();
+  updateManagerDisplay();
 }
 
 function updateCustomerDisplay() {
