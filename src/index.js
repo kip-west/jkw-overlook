@@ -21,13 +21,18 @@ const loginSubmitButton = document.getElementById("submit-login");
 const searchRoomsButton = document.getElementById("searchRooms-button");
 const clearResultsButton = document.getElementById("clear-searchRooms-button");
 const searchUserButton = document.getElementById("searchUsers-button");
-const clearUserButton = document.getElementById("clear-searchUsers-button")
+const clearUserButton = document.getElementById("clear-searchUsers-button");
+const selectDateInput = document.getElementById("select-date-for-booking");
+const managerBookRoomButton = document.getElementById("book-room-manager");
+const findOpenRoomButton = document.getElementById("select-date-button");
 
 loginSubmitButton.addEventListener("click", validateLogin);
 searchRoomsButton.addEventListener("click", searchRooms);
 clearResultsButton.addEventListener("click", clearSearchResults);
 searchUserButton.addEventListener("click", searchUsers);
-clearUserButton.addEventListener("click", clearUserProfile)
+clearUserButton.addEventListener("click", clearUserProfile);
+managerBookRoomButton.addEventListener("click", bookRoom);
+findOpenRoomButton.addEventListener("click", findRoomToBook)
 
 function validateUsername() {
   if (domUpdates.checkManagerLogin()) {
@@ -134,6 +139,16 @@ function bookRoomClickHandler(event) {
   }
 
   postBookingData(postBody);
+}
+
+function findRoomToBook() {
+  event.preventDefault();
+  domUpdates.bookRoomSelectDate();
+}
+
+function bookRoom() {
+  event.preventDefault();
+  domUpdates.createPostBody();
 }
 
 /*----------GET/POST/DELETE Functions----------*/
