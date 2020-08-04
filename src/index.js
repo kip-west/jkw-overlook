@@ -20,10 +20,14 @@ window.onload = getDataFromServer();
 const loginSubmitButton = document.getElementById("submit-login");
 const searchRoomsButton = document.getElementById("searchRooms-button");
 const clearResultsButton = document.getElementById("clear-searchRooms-button");
+const searchUserButton = document.getElementById("searchUsers-button");
+const clearUserButton = document.getElementById("clear-searchUsers-button")
 
 loginSubmitButton.addEventListener("click", validateLogin);
 searchRoomsButton.addEventListener("click", searchRooms);
-clearResultsButton.addEventListener("click", clearSearchResults)
+clearResultsButton.addEventListener("click", clearSearchResults);
+searchUserButton.addEventListener("click", searchUsers);
+clearUserButton.addEventListener("click", clearUserProfile)
 
 function validateUsername() {
   if (domUpdates.checkManagerLogin()) {
@@ -78,6 +82,7 @@ function updateCustomerDisplay() {
 function updateManagerDisplay() {
   domUpdates.displayTotalRevenue();
   domUpdates.displayVacancyData();
+  domUpdates.createUserListOptions();
 }
 
 function clearSearchResults() {
@@ -96,6 +101,16 @@ function searchRooms() {
   }
 
   addListenersBookRoom();
+}
+
+function searchUsers() {
+  event.preventDefault();
+  domUpdates.createUserProfileCard();
+  domUpdates.displayUserProfileCard();
+}
+
+function clearUserProfile() {
+  domUpdates.clearUserProfileCard();
 }
 
 function addListenersBookRoom() {

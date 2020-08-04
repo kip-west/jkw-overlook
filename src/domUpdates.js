@@ -194,6 +194,37 @@ const domUpdates = {
     let percentRoomsVacant = `${((numRoomsVacant / this.roomsData.rooms.length) * 100)}%`;
     percentRoomsVacantField.innerText = percentRoomsVacant;
   },
+
+  createUserListOptions() {
+    let userDataList = document.getElementById('users-dropdown');
+    let allUsers = this.usersData.users;
+    let alphabetizedUsers = allUsers.sort((a, b) => a.name > b.name ? 1 : -1)
+    let allUsersHTML = alphabetizedUsers.map(user => `<option id="${user.id}">${user.name}</option>`).join('');
+
+    userDataList.insertAdjacentHTML('afterbegin', allUsersHTML);
+  },
+
+  displayUserProfileCard() {
+    let userCard = document.querySelector('.user-card');
+    userCard.classList.remove('hidden');
+  },
+
+  clearUserProfileCard() {
+    let userCard = document.querySelector('.user-card');
+    userCard.classList.add('hidden');
+
+    let profileCardHeader = document.getElementById('user-name');
+    profileCardHeader.removeChild(profileCardHeader.childNodes[0]);
+  },
+
+  createUserProfileCard() {
+    let selectedUserName = document.getElementById('select-user-by-name').value;
+    let foundUser = this.usersData.findUserByName(selectedUserName);
+    console.log(foundUser)
+
+    let profileCardHeader = document.getElementById('user-name');
+    profileCardHeader.insertAdjacentHTML('afterbegin', foundUser.name)
+  }
 }
 
 export default domUpdates;

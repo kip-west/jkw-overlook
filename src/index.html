@@ -120,11 +120,8 @@
           <form class="searchUsers-form">
             <div class="searchRooms-field roomType-field">
               <label for="select-user-byName" class="select-User-label">Enter User Name</label>
-              <input list="users" name="select-user-by-name" id="select-user-by-name">
-              <datalist id="users">
-                <option value="Wendy Torrance">
-                <option value="Danny Torrance">
-                <option value="Jack Torrance">
+              <input list="users-dropdown" name="select-user-by-name" id="select-user-by-name">
+              <datalist id="users-dropdown">
               </datalist>
             </div>
             <div class="searchUsers-button-container">
@@ -133,9 +130,9 @@
             </div>
           </form>
           <section class="searchUsers-results">
-            <div class="user-card">
+            <div class="user-card hidden">
               <section class="user-profile">
-                <h3><span id="user-name">Wendy Torrance</span></h3>
+                <h3><span id="user-name"></span></h3>
                 <span class="bookings-list" id="all-bookings-for-user">
                   <ol class="list-of-bookings">
                     <li class="booking-list-item">April 4, 2020; residential-suite <button class="deleteBooking">Delete</button></li>
