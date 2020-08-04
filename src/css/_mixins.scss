@@ -9,3 +9,9 @@
   text-align: center;
   width: $width;
 }
+
+@mixin formStyle ($display, $flexDirection, $justifyContent) {
+  display: $display;
+  flex-direction: $flexDirection;
+  justify-content: $justifyContent
+}

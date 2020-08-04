@@ -131,10 +131,8 @@ span {
 
 .searchRooms-form,
 .searchUsers-form {
+  @include formStyle(flex, row, space-around)
   align-items: flex-end;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-around;
 }
 
 .searchRooms-form input,
@@ -173,7 +171,7 @@ span {
 .user-card {
   background-color: #E8E8EE;
   border-radius: 16px;
-  border: 1px solid #CCCCCC;
+  border: $border-style;
   height: fit-content;
 }
 
@@ -201,24 +199,24 @@ span {
 
 .bookings-list li {
   padding: 8px 16px;
-  border: 1px solid #CCCCCC;
+  border: $border-style;
 }
 
 #list-of-bookings {
   padding: 0;
   list-style-type: none;
-  border: 1px solid #CCCCCC;
+  border: $border-style;
   width: 90%;
   height: 25vh;
   overflow: scroll;
-}
 
-#list-of-bookings li {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  padding: 8px 16px;
-  border-bottom: 1px solid #CCCCCC;
+  li {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 8px 16px;
+    border-bottom: $border-style;
+  }
 }
 
 ol li:last-child {
@@ -231,10 +229,8 @@ ol li:last-child {
 }
 
 .add-booking-form {
-  display: flex;
-  flex-direction: column;
+  @include formStyle(flex, column, space-around)
   margin: 5%;
-  justify-content: space-around;
 }
 
 .add-booking-form input {
