@@ -104,6 +104,7 @@ function searchRooms() {
 function searchUsers() {
   event.preventDefault();
   domUpdates.createUserProfileCard();
+  domUpdates.displayUserProfileCard();
 }
 
 function addListenersBookRoom() {
