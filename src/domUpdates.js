@@ -231,17 +231,27 @@ const domUpdates = {
     return bookingHTML;
   },
 
+  createProfileCardTotal(bookings) {
+    let roomNumbers = this.createRoomNumbersArray(bookings);
+    console.log(roomNumbers);
+    let profileCardTotal = this.roomsData.calculateTotalSpent(roomNumbers);
+    console.log(profileCardTotal)
+    return `$${profileCardTotal.toFixed(2)}`;
+  },
+
   createUserProfileCard() {
     let selectedUserName = document.getElementById('select-user-by-name').value;
     let foundUser = this.usersData.findUserByName(selectedUserName);
-    console.log(foundUser)
 
-    let profileCardHeader = document.getElementById('user-profile-name');
-    profileCardHeader.insertAdjacentHTML('afterbegin', foundUser.name)
+    let profileCardName = document.getElementById('user-profile-name');
+    profileCardName.insertAdjacentHTML('afterbegin', foundUser.name);
+
+    let selectedUsersBookings = this.bookingsData.findBookingsByUser(foundUser.id);
+
+    let profileCardTotal = document.getElementById('user-profile-total');
+    profileCardTotal.innerText = this.createProfileCardTotal(selectedUsersBookings);
 
     let profileListOfBookings = document.getElementById('list-of-bookings');
-    let selectedUsersBookings = this.bookingsData.findBookingsByUser(foundUser.id);
-    console.log(selectedUsersBookings)
     selectedUsersBookings.map(booking => {
       let bookingHTML = this.createBookingsHTMLManagerDash(booking);
       profileListOfBookings.insertAdjacentHTML('afterbegin', bookingHTML)
