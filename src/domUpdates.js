@@ -202,7 +202,25 @@ const domUpdates = {
     let allUsersHTML = alphabetizedUsers.map(user => `<option id="${user.id}">${user.name}</option>`).join('');
 
     userDataList.insertAdjacentHTML('afterbegin', allUsersHTML);
-    console.log(userDataList)
+  },
+
+  createUserProfileCard() {
+    let selectedUserName = document.getElementById('select-user-by-name').value;
+    let foundUser = this.usersData.findUserByName(selectedUserName);
+    console.log(foundUser)
+    let selectedUserProfileCard =
+    `<section class="user-profile">
+      <h3><span id="user-name">${foundUser.name}</span></h3>
+      <span class="bookings-list" id="all-bookings-for-user">
+        <ol class="list-of-bookings">
+          <li class="booking-list-item">April 4, 2020; residential-suite <button class="deleteBooking">Delete</button></li>
+          <li class="booking-list-item">April 23, 2020; junior-suite <button class="deleteBooking">Delete</button></li>
+        </ol>
+      </span>
+    </section>`;
+
+    let userProfileCardField = document.getElementById('userProfile-card-container');
+    userProfileCardField.insertAdjacentHTML('afterbegin', selectedUserProfileCard)
   }
 }
 

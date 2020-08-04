@@ -122,7 +122,6 @@
               <label for="select-user-byName" class="select-User-label">Enter User Name</label>
               <input list="users-dropdown" name="select-user-by-name" id="select-user-by-name">
               <datalist id="users-dropdown">
-
               </datalist>
             </div>
             <div class="searchUsers-button-container">
@@ -132,15 +131,8 @@
           </form>
           <section class="searchUsers-results">
             <div class="user-card">
-              <section class="user-profile">
-                <h3><span id="user-name">Wendy Torrance</span></h3>
-                <span class="bookings-list" id="all-bookings-for-user">
-                  <ol class="list-of-bookings">
-                    <li class="booking-list-item">April 4, 2020; residential-suite <button class="deleteBooking">Delete</button></li>
-                    <li class="booking-list-item">April 23, 2020; junior-suite <button class="deleteBooking">Delete</button></li>
-                  </ol>
-                </span>
-              </section>
+              <span id="userProfile-card-container">
+              </span>
               <hr>
               <section class="add-booking-for-user">
                 <h3>Book a Room</h3>
