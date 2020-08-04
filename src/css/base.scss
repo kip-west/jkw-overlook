@@ -1,4 +1,6 @@
 @import 'variables';
+@import 'media-queries';
+@import 'mixins';
 
 body {
   background: $primary-background;
@@ -36,23 +38,19 @@ hr {
 }
 
 .login-container {
-  align-items: center;
-  background-color: $widget-color;
-  border-radius: 15px;
-  display: flex;
-  justify-content: center;
-  width: 50%;
-  height: 50%;
-  text-align: center;
+  @include widgetStyle(flex, column, 50vw)
+  height: 50vh;
 }
 
 .login-container h2 {
   margin: 0;
+  font-size: 3vw;
 }
 
 .login-field {
   margin: 20px 0 20px;
   width: 100%;
+  text-align: left;
 }
 
 .login-form-label {
@@ -68,6 +66,8 @@ hr {
 }
 
 /*-----------User Dashboards----------*/
+
+
 .customer-dashboard,
 .manager-dashboard {
   display: grid;
@@ -87,7 +87,7 @@ hr {
   height: 90vh
 }
 
-.dashboard h2 {
+.data-widget h2 {
   font-size: 1.25vw;
 }
 
@@ -97,7 +97,7 @@ ol {
 }
 
 span {
-  color: $red-color;
+  color: $text-focus-color;
 }
 
 .widget-number {
@@ -115,21 +115,8 @@ span {
   font-size: 1.25vw;
 }
 
-.user-total,
-.upcoming-reservations,
-.past-reservations,
-.today-revenue,
-.total-rooms-available,
-.percentage-rooms-available
-{
-  align-items: center;
-  background-color: $widget-color;
-  border-radius: 15px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  text-align: center;
-  width: 90%;
+.data-widget {
+  @include widgetStyle(flex, column, 90%)
 }
 
 .searchRooms-container,
@@ -202,7 +189,7 @@ span {
 }
 
 .bookings-list {
-  color: $red-color;
+  color: $text-focus-color;
   display: flex;
   justify-content: center;
   height: 25vh;
