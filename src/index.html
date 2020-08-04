@@ -28,7 +28,8 @@
           </form>
         </div>
       </section>
-      <section class="dashboard customer-dashboard hidden">
+      <!-- Add hidden to customer-dashboard-->
+      <section class="dashboard customer-dashboard">
         <div class="customer-data">
           <section class="user-total">
             <h2>You have spent
@@ -86,7 +87,8 @@
           </section>
         </div>
       </section>
-      <section class="dashboard manager-dashboard hidden">
+            <!-- Add hidden to manager-dashboard-->
+      <section class="dashboard manager-dashboard">
         <div class="manager-data">
           <section class="today-revenue">
             <h2>The Overlook has a total of
@@ -119,7 +121,7 @@
           <h2>Search Users</h2>
           <form class="searchUsers-form">
             <div class="searchRooms-field roomType-field">
-              <label for="select-user-byName" class="select-User-label">Enter User Name</label>
+              <label for="select-user-by-name" class="select-User-label">Enter User Name</label>
               <input list="users-dropdown" name="select-user-by-name" id="select-user-by-name">
               <datalist id="users-dropdown">
               </datalist>
@@ -130,7 +132,8 @@
             </div>
           </form>
           <section class="searchUsers-results">
-            <div class="user-card hidden">
+                  <!-- Add hidden to user-card-->
+            <div class="user-card">
               <section class="user-profile">
                 <h3 class="user-profile-header">
                   <span id="user-profile-name"></span> has spent<br>
@@ -146,11 +149,12 @@
                 <form class="add-booking-form">
                   <div class="choose-date-container">
                     <h3>Book a Room for <span class="found-user"></span></h3>
-                      <label for="select-date-input" class="select-date-input-label">Select Date</label>
+                      <label for="select-date-for-booking" class="select-date-input-label">Select Date</label>
                       <input type="date" value="select-date-input" id="select-date-for-booking">
                       <input type="submit" value="Find Open Rooms" id="select-date-button">
                   </div>
-                  <div class="hidden" id="select-room-container">
+                        <!-- Add hidden to div below-->
+                  <div id="select-room-container">
                     <label for="select-room-input" class="select-date-input-label">Select Room</label>
                     <input list="rooms-dropdown" name="select-room-input" id="select-room-input">
                     <input type="submit" value="Select Room Number" id="select-room-button">
@@ -158,7 +162,8 @@
 
                     </datalist>
                   </div>
-                  <div class="modify-booking-button-container hidden">
+                        <!-- Add hidden to div below-->
+                  <div class="modify-booking-button-container">
                     <input id="book-room-manager" value="Book Room" type="submit">
                     <input id="clear-form-manager" value="Clear Form" type="reset">
                   </div>
