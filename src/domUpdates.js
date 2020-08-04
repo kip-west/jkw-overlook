@@ -213,8 +213,11 @@ const domUpdates = {
     let userCard = document.querySelector('.user-card');
     userCard.classList.add('hidden');
 
-    let profileCardHeader = document.getElementById('user-name');
-    profileCardHeader.removeChild(profileCardHeader.childNodes[0]);
+    let profileCardHeader = document.getElementById('user-profile-name');
+    profileCardHeader.innerHTML = '';
+
+    let profileListOfBookings = document.getElementById('list-of-bookings');
+    profileListOfBookings.innerHTML = '';
   },
 
   createBookingsHTMLManagerDash(booking) {
@@ -233,7 +236,7 @@ const domUpdates = {
     let foundUser = this.usersData.findUserByName(selectedUserName);
     console.log(foundUser)
 
-    let profileCardHeader = document.getElementById('user-name');
+    let profileCardHeader = document.getElementById('user-profile-name');
     profileCardHeader.insertAdjacentHTML('afterbegin', foundUser.name)
 
     let profileListOfBookings = document.getElementById('list-of-bookings');
