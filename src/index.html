@@ -12,7 +12,7 @@
       <span class="user-info">Welcome!</span>
     </header>
     <main>
-      <section class="dashboard login-dashboard">
+      <section class="dashboard login-dashboard hidden">
         <div class="login-container">
           <form class="login-form">
             <h2>Login</h2>
@@ -86,7 +86,7 @@
           </section>
         </div>
       </section>
-      <section class="dashboard manager-dashboard hidden">
+      <section class="dashboard manager-dashboard">
         <div class="manager-data">
           <section class="today-revenue">
             <h2>The Overlook has a total of
@@ -132,11 +132,12 @@
           <section class="searchUsers-results">
             <div class="user-card hidden">
               <section class="user-profile">
-                <h3><span id="user-name"></span></h3>
+                <h3 class="user-profile-header">
+                  <span id="user-profile-name"></span> has spent<br>
+                  <span id="user-profile-total"></span> with The Overlook.
+                </h3>
                 <span class="bookings-list" id="all-bookings-for-user">
-                  <ol class="list-of-bookings">
-                    <li class="booking-list-item">April 4, 2020; residential-suite <button class="deleteBooking">Delete</button></li>
-                    <li class="booking-list-item">April 23, 2020; junior-suite <button class="deleteBooking">Delete</button></li>
+                  <ol id="list-of-bookings">
                   </ol>
                 </span>
               </section>

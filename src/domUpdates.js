@@ -213,17 +213,49 @@ const domUpdates = {
     let userCard = document.querySelector('.user-card');
     userCard.classList.add('hidden');
 
-    let profileCardHeader = document.getElementById('user-name');
-    profileCardHeader.removeChild(profileCardHeader.childNodes[0]);
+    let profileCardHeader = document.getElementById('user-profile-name');
+    profileCardHeader.innerHTML = '';
+
+    let profileListOfBookings = document.getElementById('list-of-bookings');
+    profileListOfBookings.innerHTML = '';
+  },
+
+  createBookingsHTMLManagerDash(booking) {
+    let foundRoom = this.roomsData.rooms.find(room => room.number === booking.roomNumber);
+    let bookingHTML = `
+      <li class="booking-list-item" id="${booking.id}">
+        ${booking.date}; ${foundRoom.roomType}
+        <button class="deleteBooking" id="${booking.id}">Delete</button>
+      </li>`;
+    console.log(bookingHTML)
+    return bookingHTML;
+  },
+
+  createProfileCardTotal(bookings) {
+    let roomNumbers = this.createRoomNumbersArray(bookings);
+    console.log(roomNumbers);
+    let profileCardTotal = this.roomsData.calculateTotalSpent(roomNumbers);
+    console.log(profileCardTotal)
+    return `$${profileCardTotal.toFixed(2)}`;
   },
 
   createUserProfileCard() {
     let selectedUserName = document.getElementById('select-user-by-name').value;
     let foundUser = this.usersData.findUserByName(selectedUserName);
-    console.log(foundUser)
 
-    let profileCardHeader = document.getElementById('user-name');
-    profileCardHeader.insertAdjacentHTML('afterbegin', foundUser.name)
+    let profileCardName = document.getElementById('user-profile-name');
+    profileCardName.insertAdjacentHTML('afterbegin', foundUser.name);
+
+    let selectedUsersBookings = this.bookingsData.findBookingsByUser(foundUser.id);
+
+    let profileCardTotal = document.getElementById('user-profile-total');
+    profileCardTotal.innerText = this.createProfileCardTotal(selectedUsersBookings);
+
+    let profileListOfBookings = document.getElementById('list-of-bookings');
+    selectedUsersBookings.map(booking => {
+      let bookingHTML = this.createBookingsHTMLManagerDash(booking);
+      profileListOfBookings.insertAdjacentHTML('afterbegin', bookingHTML)
+    })
   }
 }
 
