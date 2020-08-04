@@ -273,7 +273,12 @@ const domUpdates = {
     selectedUsersBookings.map(booking => {
       let bookingHTML = this.createBookingsHTMLManagerDash(booking);
       profileListOfBookings.insertAdjacentHTML('afterbegin', bookingHTML)
-    })
+    });
+
+    let deleteButtons = document.querySelectorAll('.deleteBooking');
+    for (let i = 0; i < deleteButtons.length; i++) {
+      deleteButtons[i].addEventListener('click', domUpdates.createDeleteBookingBody)
+    };
   },
 
   createOpenRoomHTML(date) {
@@ -325,7 +330,15 @@ const domUpdates = {
     }
 
     return postBody
-  }
+  },
+
+  createDeleteBookingBody(event) {
+    let deleteBookingBody = {
+      "id": parseInt(event.target.id)
+    }
+    console.log(deleteBookingBody)
+    return deleteBookingBody
+  },
 }
 
 export default domUpdates;
