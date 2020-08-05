@@ -2,7 +2,7 @@ import { expect } from 'chai';
 import BookingsData from '../src/BookingsData';
 import bookingData from './test-data/bookingData'
 
-describe.only('Bookings Data', function() {
+describe('Bookings Data', function() {
   let bookingsData1;
   beforeEach(function() {
     bookingsData1 = new BookingsData(bookingData);
