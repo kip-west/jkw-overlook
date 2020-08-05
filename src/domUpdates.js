@@ -63,6 +63,25 @@ const domUpdates = {
     }
   },
 
+  updateHeader() {
+    let logoutButton = document.querySelector('.logout-button');
+    logoutButton.classList.remove('hidden');
+    logoutButton.addEventListener('click', domUpdates.logOut);
+
+    let userInfo = document.querySelector('.user-info');
+    userInfo.innerText = `Welcome, ${this.currentUser.name}!`
+  },
+
+  logOut() {
+    let loginForm = document.querySelector('.login-form');
+    loginForm.reset();
+    domUpdates.currentUser = null;
+    domUpdates.showLoginDashboard();
+
+    let userInfo = document.querySelector('.user-info');
+    userInfo.innerText = `Welcome!`
+  },
+
   retrieveCurrentCustomerBookings() {
     let currentUserBookings = this.bookingsData.findBookingsByUser(this.currentUser.id);
     this.currentUser.bookings = currentUserBookings;

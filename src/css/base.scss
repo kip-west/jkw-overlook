@@ -73,6 +73,14 @@ span {
 }
 
 /*-----------User Dashboards----------*/
+.header-right {
+  @include displayStyle(flex, column, space-around)
+}
+
+.logout-button {
+
+}
+
 .customer-dashboard,
 .manager-dashboard {
   display: grid;

@@ -85,13 +85,14 @@ function updateCustomerDisplay() {
   domUpdates.retrieveCurrentCustomerBookings();
   domUpdates.displayBookingData();
   domUpdates.displayTotalSpent(domUpdates.createRoomNumbersArray(domUpdates.currentUser.bookings))
-  console.log(domUpdates)
+  domUpdates.updateHeader();
 }
 
 function updateManagerDisplay() {
   domUpdates.displayTotalRevenue();
   domUpdates.displayVacancyData();
   domUpdates.createUserListOptions();
+  domUpdates.updateHeader();
 }
 
 function clearSearchResults() {
