@@ -214,7 +214,7 @@ const domUpdates = {
     numberRoomsVacantField.innerText = numRoomsVacant;
 
     let percentRoomsVacantField = document.getElementById('percent-rooms-vacant');
-    let percentRoomsVacant = `${((numRoomsVacant / this.roomsData.rooms.length) * 100)}%`;
+    let percentRoomsVacant = `${((numRoomsVacant / this.roomsData.rooms.length) * 100).toFixed(0)}%`;
     percentRoomsVacantField.innerText = percentRoomsVacant;
   },
 
