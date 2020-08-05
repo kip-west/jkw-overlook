@@ -1,4 +1,6 @@
 @import 'variables';
+@import 'media-queries';
+@import 'mixins';
 
 body {
   background: $primary-background;
@@ -9,11 +11,9 @@ body {
 }
 
 header {
+  @include displayStyle(flex, row, space-between)
   align-items: center;
   background-color: $widget-color;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
   padding: 0px 10px 0px 10px;
 }
 
@@ -22,37 +22,44 @@ hr {
   color: #CCCCCC;
 }
 
+ul,
+ol {
+  text-align: left;
+}
+
+ol li:last-child {
+  border-bottom: none;
+}
+
+span {
+  color: $text-focus-color;
+}
+
 .hidden {
   display: none!important
 }
 /*-----------Login Dashboard----------*/
 .login-dashboard {
+  @include displayStyle(flex, column, center)
   align-items: center;
   align-content: center;
-  display: flex;
-  flex-direction: column;
   height: 100vh;
-  justify-content: center;
 }
 
 .login-container {
-  align-items: center;
-  background-color: $widget-color;
-  border-radius: 15px;
-  display: flex;
-  justify-content: center;
-  width: 50%;
-  height: 50%;
-  text-align: center;
+  @include widgetStyle(flex, column, 50vw)
+  height: 50vh;
 }
 
 .login-container h2 {
   margin: 0;
+  font-size: 3vw;
 }
 
 .login-field {
   margin: 20px 0 20px;
   width: 100%;
+  text-align: left;
 }
 
 .login-form-label {
@@ -61,9 +68,7 @@ hr {
 
 #username-input,
 #password-input {
-  background-color: $widget-color;
-  border-width: 0 0 1px;
-  padding: 5px;
+  @include formFieldStyle()
   width: 250px;
 }
 
@@ -80,56 +85,9 @@ hr {
 
 .customer-data,
 .manager-data {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-around;
+  @include displayStyle(flex, column, space-around)
   align-items: center;
   height: 90vh
-}
-
-.dashboard h2 {
-  font-size: 1.25vw;
-}
-
-ul,
-ol {
-  text-align: left;
-}
-
-span {
-  color: $red-color;
-}
-
-.widget-number {
-  font-size: 3vw;
-}
-
-.widget-font {
-  padding: 3px
-}
-
-#upcoming-bookings,
-#past-bookings {
-  display: flex;
-  flex-direction: column;
-  font-size: 1.25vw;
-}
-
-.user-total,
-.upcoming-reservations,
-.past-reservations,
-.today-revenue,
-.total-rooms-available,
-.percentage-rooms-available
-{
-  align-items: center;
-  background-color: $widget-color;
-  border-radius: 15px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  text-align: center;
-  width: 90%;
 }
 
 .searchRooms-container,
@@ -144,10 +102,8 @@ span {
 
 .searchRooms-form,
 .searchUsers-form {
+  @include displayStyle(flex, row, space-around)
   align-items: flex-end;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-around;
 }
 
 .searchRooms-form input,
@@ -156,19 +112,61 @@ span {
   font-size: 1.2vw;
 }
 
+.data-widget h2 {
+  font-size: 1.25vw;
+}
+
+.data-widget {
+  @include widgetStyle(flex, column, 90%)
+}
+
+.widget-number {
+  font-size: 3vw;
+}
+
+.widget-font {
+  padding: 3px
+}
+
+/*-----------Customer Dashboard----------*/
+#upcoming-bookings,
+#past-bookings {
+  display: flex;
+  flex-direction: column;
+  font-size: 1.25vw;
+}
+
+.bookings-list {
+  @include listOfBookingsStyle(2%, 25vh)
+  color: $text-focus-color;
+  display: flex;
+  justify-content: center;
+  margin: 0;
+
+  li {
+    padding: 8px 16px;
+    border: $border-style;
+  }
+}
+
+.vacant-room-card,
+.user-card {
+  background-color: #E8E8EE;
+  border-radius: 16px;
+  border: $border-style;
+  height: fit-content;
+}
+
+/*-----------Customer Dashboard----------*/
 #select-date,
 #select-roomType,
 #select-user-by-name {
-  background-color: $widget-color;
-  border-width: 0 0 1px;
-  padding: 5px;
+  @include formFieldStyle()
 }
 
 .searchRooms-button-container {
-  display: flex;
+  @include displayStyle(flex, column, space-around)
   height: 110%;
-  flex-direction: column;
-  justify-content: space-around;
 }
 
 .searchRoom-results {
@@ -181,19 +179,7 @@ span {
   height: 75vh;
   overflow: scroll;
 }
-
-.vacant-room-card,
-.user-card {
-  background-color: #E8E8EE;
-  border-radius: 16px;
-  border: 1px solid #CCCCCC;
-  height: fit-content;
-}
-
-.user-card {
-  width: 75%
-}
-
+/*-----------Manager Dashboard----------*/
 .searchUsers-results {
   margin: 5%;
   align-content: center;
@@ -201,56 +187,43 @@ span {
   justify-content: center;
 }
 
-.bookings-list {
-  color: $red-color;
-  display: flex;
-  justify-content: center;
-  height: 25vh;
-  overflow: scroll;
-  padding: 2%;
-  list-style-type: none;
-  margin: 0;
-}
-
-.bookings-list li {
-  padding: 8px 16px;
-  border: 1px solid #CCCCCC;
-}
-
 #list-of-bookings {
-  padding: 0;
-  list-style-type: none;
-  border: 1px solid #CCCCCC;
+  @include listOfBookingsStyle(0, 30vh)
+  border: $border-style;
   width: 90%;
-  height: 25vh;
-  overflow: scroll;
+
+  li {
+    @include displayStyle(flex, row, space-between)
+    padding: 8px 16px;
+    border-bottom: $border-style;
+  }
 }
 
-#list-of-bookings li {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  padding: 8px 16px;
-  border-bottom: 1px solid #CCCCCC;
-}
-
-ol li:last-child {
-  border-bottom: none;
+.user-card {
+  width: 90%
 }
 
 .booking-list-item {
-  text-align: left;
   font-size: 1.5vw;
+  text-align: left;
 }
 
 .add-booking-form {
-  display: flex;
-  flex-direction: column;
+  @include displayStyle(flex, column, space-around)
   margin: 5%;
-  justify-content: space-around;
 }
 
 .add-booking-form input {
   padding: 3%;
-  margin: 3%;
+}
+
+.choose-date-container,
+.select-room-container {
+  @include displayStyle(flex, row, space-between)
+  align-items: center;
+  padding: 2%;
+}
+
+.modify-booking-button-container {
+  @include displayStyle(flex, row, space-around)
 }

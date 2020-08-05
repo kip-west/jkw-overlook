@@ -1,0 +1,30 @@
+@mixin widgetStyle ($display, $direction, $width) {
+  align-items: center;
+  background-color: $widget-color;
+  border-radius: 15px;
+  display: $display;
+  flex-direction: $direction;
+  justify-content: center;
+  margin: 2%;
+  text-align: center;
+  width: $width;
+}
+
+@mixin displayStyle ($display, $flexDirection, $justifyContent) {
+  display: $display;
+  flex-direction: $flexDirection;
+  justify-content: $justifyContent
+}
+
+@mixin formFieldStyle {
+  background-color: $widget-color;
+  border-width: 0 0 1px;
+  padding: 5px;
+}
+
+@mixin listOfBookingsStyle($padding, $height) {
+  height: $height;
+  list-style-type: none;
+  overflow: scroll;
+  padding: $padding;
+}

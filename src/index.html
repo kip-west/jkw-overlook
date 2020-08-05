@@ -28,10 +28,9 @@
           </form>
         </div>
       </section>
-      <!-- Add hidden to customer-dashboard-->
-      <section class="dashboard customer-dashboard">
+      <section class="dashboard customer-dashboard hidden">
         <div class="customer-data">
-          <section class="user-total">
+          <section class="data-widget user-total">
             <h2>You have spent
             <br>
             <span class="widget-number" id="user-total-spent"></span><br>
@@ -40,14 +39,14 @@
             Thank you for your support!</h2>
           </section>
 
-          <section class="upcoming-reservations">
+          <section class="data-widget upcoming-reservations">
             <h2 class="widget-font">We look forward to seeing you on:
             <ul class="bookings-list" id="upcoming-bookings">
             </ul>
             </h2>
           </section>
 
-          <section class="past-reservations">
+          <section class="data-widget past-reservations">
             <h2 class=widget-font>How were your recent stays from:
               <ul class="bookings-list" id="past-bookings">
               </ul>
@@ -83,10 +82,9 @@
           </section>
         </div>
       </section>
-            <!-- Add hidden to manager-dashboard-->
-      <section class="dashboard manager-dashboard">
+      <section class="dashboard manager-dashboard hidden">
         <div class="manager-data">
-          <section class="today-revenue">
+          <section class="data-widget today-revenue">
             <h2>The Overlook has a total of
             <br>
             <span class="widget-number" id="today-revenue"></span>
@@ -94,7 +92,7 @@
             in revenue today.
           </section>
 
-          <section class="total-rooms-available">
+          <section class="data-widget total-rooms-available">
             <h2 class="widget-font">Today,
             <br>
             <span class="widget-number" id="number-rooms-vacant"></span>
@@ -103,7 +101,7 @@
             </h2>
           </section>
 
-          <section class="percentage-rooms-available">
+          <section class="data-widget percentage-rooms-available">
             <h2 class=widget-font>Today,
             <br>
             <span class="widget-number" id="percent-rooms-vacant"></span>
@@ -128,8 +126,7 @@
             </div>
           </form>
           <section class="searchUsers-results">
-                  <!-- Add hidden to user-card-->
-            <div class="user-card">
+            <div class="user-card hidden">
               <section class="user-profile">
                 <h3 class="user-profile-header">
                   <span id="user-profile-name"></span> has spent<br>
@@ -143,23 +140,21 @@
               <hr>
               <section class="add-booking-for-user">
                 <form class="add-booking-form">
-                  <div class="choose-date-container">
                     <h3>Book a Room for <span class="found-user"></span></h3>
+                    <div class="choose-date-container">
                       <label for="select-date-for-booking" class="select-date-input-label">Select Date</label>
                       <input type="date" value="select-date-input" id="select-date-for-booking">
                       <input type="submit" value="Find Open Rooms" id="select-date-button">
                   </div>
-                        <!-- Add hidden to div below-->
-                  <div id="select-room-container">
+                  <div class="select-room-container hidden">
                     <label for="select-room-input" class="select-date-input-label">Select Room</label>
                     <input list="rooms-dropdown" name="select-room-input" id="select-room-input">
-                    <input type="submit" value="Select Room Number" id="select-room-button">
                     <datalist id="rooms-dropdown">
 
                     </datalist>
+                    <input type="submit" value="Select Room Number" id="select-room-button">
                   </div>
-                        <!-- Add hidden to div below-->
-                  <div class="modify-booking-button-container">
+                  <div class="modify-booking-button-container hidden">
                     <input id="book-room-manager" value="Book Room" type="submit">
                     <input id="clear-form-manager" value="Clear Form" type="reset">
                   </div>
