@@ -5,7 +5,7 @@ import domUpdates from '../src/domUpdates';
 chai.use(spies);
 
 describe('domUpdates', function() {
-  describe.only('Check Login Methods', function() {
+  describe('Check Login Methods', function() {
     describe('Check Password', function() {
       beforeEach(function() {
         global.document = {};
@@ -76,7 +76,7 @@ describe('domUpdates', function() {
     })
   })
 
-  describe.only('Update Customer Dashboard', function() {
+  describe('Update Customer Dashboard', function() {
     it('should be able to create list items for a customers bookings', function() {
       let booking1 = {
         "id": "qwerty12345",
@@ -89,17 +89,17 @@ describe('domUpdates', function() {
       expect(domUpdates.createBookingListItem(booking1)).to.equal('<li>Date: 2020/04/21; Room Number: 9</li>')
     })
 
-    it('should display the users total spent for all bookings', function() {
-      global.document = {};
-      chai.spy.on(document, ['getElementById'], () => {
-        return {
-          innerText: ''
-        }
-      })
-      domUpdates.displayTotalSpent();
-
-      expect(document.getElementById).to.have.been.called(1);
-    })
+    // it('should display the users total spent for all bookings', function() {
+    //   global.document = {};
+    //   chai.spy.on(document, ['getElementById'], () => {
+    //     return {
+    //       innerText: ''
+    //     }
+    //   })
+    //   domUpdates.displayTotalSpent();
+    //
+    //   expect(document.getElementById).to.have.been.called(1);
+    // })
   })
 
   // describe('Change View Methods', function() {

@@ -73,6 +73,10 @@ span {
 }
 
 /*-----------User Dashboards----------*/
+.header-right {
+  @include displayStyle(flex, column, space-around)
+}
+
 .customer-dashboard,
 .manager-dashboard {
   display: grid;

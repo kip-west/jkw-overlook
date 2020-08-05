@@ -3,7 +3,7 @@ import customerData from './test-data/customerData'
 import CustomerData from '../src/CustomerData'
 import Customer from '../src/Customer'
 
-describe.only('Customer Data', function() {
+describe('Customer Data', function() {
   let customerData1;
   beforeEach(function() {
     customerData1 = new CustomerData(customerData);
