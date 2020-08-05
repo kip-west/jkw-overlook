@@ -74,10 +74,16 @@ const domUpdates = {
   logOut() {
     let logoutButton = document.querySelector('.logout-button');
     logoutButton.classList.add('hidden');
-    let loginForm = document.querySelector('.login-form');
-    loginForm.reset();
+    let forms = document.querySelectorAll('form');
+    for (let i = 0; i < forms.length; i ++) {
+      forms[i].reset();
+    }
+
     domUpdates.currentUser = null;
     domUpdates.showLoginDashboard();
+    domUpdates.clearUserProfileCard();
+
+    document.querySelector('.searchRoom-results').innerHTML = '';
 
     let userInfo = document.querySelector('.user-info');
     userInfo.innerText = `Welcome!`
