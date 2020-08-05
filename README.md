@@ -18,8 +18,8 @@ The Overlook is a web application designed to simulate a hotel booking website. 
 * ![](src/images/jkw-customer-bookRoom.gif)
 
 * When a Manager logs in, they are taken to their dashboard. Here, they can see The Overlook's total revenue today, how many rooms are booked, as well as the percentage of rooms booked. Managers are also able to select from existing users to view a customer profile, providing stats & upcoming bookings for this customer. From this profile, Managers are able to book new rooms and delete upcoming bookings for customers.
-* ![](src/images/manager-addBooking.gif)
-* ![](src/images/manager-deleteBooking.gif)
+* ![](src/images/jkw-manager-addBooking.gif)
+* ![](src/images/jkw-manager-deleteBooking.gif)
 
 * When any user is done with the site, they can `Log Out`- allowing another user on!
 * ![](src/images/jkw-logout.gif)
