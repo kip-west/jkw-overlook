@@ -181,13 +181,10 @@ span {
 }
 
 .bookings-list {
+  @include listOfBookingsStyle(2%, 25vh)
   color: $text-focus-color;
   display: flex;
   justify-content: center;
-  height: 25vh;
-  overflow: scroll;
-  padding: 2%;
-  list-style-type: none;
   margin: 0;
 }
 
@@ -197,12 +194,9 @@ span {
 }
 
 #list-of-bookings {
-  padding: 0;
-  list-style-type: none;
+  @include listOfBookingsStyle(0, 30vh)
   border: $border-style;
   width: 90%;
-  height: 25vh;
-  overflow: scroll;
 
   li {
     display: flex;
