@@ -59,15 +59,11 @@ hr {
 
 #username-input,
 #password-input {
-  background-color: $widget-color;
-  border-width: 0 0 1px;
-  padding: 5px;
+  @include formFieldStyle()
   width: 250px;
 }
 
 /*-----------User Dashboards----------*/
-
-
 .customer-dashboard,
 .manager-dashboard {
   display: grid;
@@ -144,9 +140,7 @@ span {
 #select-date,
 #select-roomType,
 #select-user-by-name {
-  background-color: $widget-color;
-  border-width: 0 0 1px;
-  padding: 5px;
+  @include formFieldStyle()
 }
 
 .searchRooms-button-container {
