@@ -1,5 +1,4 @@
 import Moment from 'moment';
-Moment().format('YYYYMMDD');
 
 const domUpdates = {
   usersData: null,
@@ -36,12 +35,12 @@ const domUpdates = {
 
   checkPassword() {
     let passwordInput = document.getElementById('password-input');
-    return(passwordInput.value === 'overlook2020');
+    return (passwordInput.value === 'overlook2020');
   },
 
   displayLoginError() {
     //Eventually, turn this into a method that prints this message in the space beneath Login & Username -jkw 8/1/20 @ 6:10 PM
-    if(!this.checkCustomerLogin().isValid || !this.checkPassword()) {
+    if (!this.checkCustomerLogin().isValid || !this.checkPassword()) {
       return 'Invalid credentials!'
     }
   },
@@ -73,6 +72,8 @@ const domUpdates = {
   },
 
   logOut() {
+    let logoutButton = document.querySelector('.logout-button');
+    logoutButton.classList.add('hidden');
     let loginForm = document.querySelector('.login-form');
     loginForm.reset();
     domUpdates.currentUser = null;
@@ -143,7 +144,7 @@ const domUpdates = {
     }, [])
 
     let vacantRooms = this.roomsData.rooms.filter(room => {
-      if(!bookedRoomNumbers.includes(room.number)) {
+      if (!bookedRoomNumbers.includes(room.number)) {
         return room
       }
     });
@@ -179,10 +180,8 @@ const domUpdates = {
   },
 
   displayVacantRoomsType() {
-    let selectDateInput = new Moment(document.getElementById('select-date').value).format('YYYY/MM/DD');
     let roomTypeInput = document.getElementById('select-roomType').value.toLowerCase();
 
-    let vacantRooms = this.findVacantRooms(selectDateInput);
     let vacantRoomsByType = this.roomsData.findRoomByType(roomTypeInput);
 
     let searchRoomsResults = document.querySelector('.searchRoom-results');
@@ -242,12 +241,11 @@ const domUpdates = {
   },
 
   addDeleteButton(booking) {
-    let bookingDate = booking.date;
     let bookingDateMoment = new Moment(booking.date).format("YYYYMMDD")
     let todayMoment = new Moment(this.today).format("YYYYMMDD")
 
     let deleteButton;
-    if(bookingDateMoment > todayMoment) {
+    if (bookingDateMoment > todayMoment) {
       deleteButton = `<button class="deleteBooking" id="${booking.id}">Delete</button>`
     } else {
       deleteButton = ``
@@ -327,7 +325,7 @@ const domUpdates = {
     let roomsDropdownInput = document.getElementById('select-room-input');
     let bookRoomButtons = document.querySelector('.modify-booking-button-container');
 
-    if(roomsDropdownInput) {
+    if (roomsDropdownInput) {
       bookRoomButtons.classList.remove('hidden');
     }
   },

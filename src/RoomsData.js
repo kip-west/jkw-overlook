@@ -14,8 +14,7 @@ class RoomsData {
         errorMessage: `Sorry! There are no ${roomType} rooms available.`
       }
       return errorMessage
-    }
-    else {
+    } else {
       return []
     }
   }

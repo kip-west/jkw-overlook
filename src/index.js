@@ -13,8 +13,6 @@ import Manager from '../src/Manager'
 // An example of how you tell webpack to use an image (also need to link to it in the index.html)
 import './images/turing-logo.png';
 
-let today = new Date();
-
 window.onload = getDataFromServer();
 
 const loginSubmitButton = document.getElementById("submit-login");
@@ -22,7 +20,6 @@ const searchRoomsButton = document.getElementById("searchRooms-button");
 const clearResultsButton = document.getElementById("clear-searchRooms-button");
 const searchUserButton = document.getElementById("searchUsers-button");
 const clearUserButton = document.getElementById("clear-searchUsers-button");
-const selectDateInput = document.getElementById("select-date-for-booking");
 const findOpenRoomButton = document.getElementById("select-date-button");
 const selectOpenRoomButton = document.getElementById("select-room-button");
 const bookRoomManagerButton = document.getElementById('book-room-manager');
@@ -43,23 +40,19 @@ function validateUsername() {
     createManager();
     domUpdates.showManagerDashboard();
     updateManagerDisplay();
-  }
-
-  else if (domUpdates.checkCustomerLogin().isValid) {
+  } else if (domUpdates.checkCustomerLogin().isValid) {
     let currentUserID = domUpdates.checkCustomerLogin().createCustomer;
     createCustomer(currentUserID)
     domUpdates.showCustomerDashboard();
     updateCustomerDisplay();
-  }
-
-  else {
+  } else {
     domUpdates.displayLoginError();
   }
 }
 
 function validateLogin() {
   event.preventDefault();
-  if(domUpdates.checkPassword()) {
+  if (domUpdates.checkPassword()) {
     validateUsername()
   } else {
     domUpdates.displayLoginError();
@@ -138,7 +131,7 @@ function bookRoomManager() {
 }
 
 function deleteBooking(event) {
-  if(event.target.localName === "button") {
+  if (event.target.localName === "button") {
     confirm("Are you sure you want to delete this booking?");
     let bookingID = parseInt(event.target.id);
     let bookingBody = {
@@ -181,7 +174,7 @@ function getDataFromServer() {
   .then(responses => Promise.all(responses.map(response => response.json())))
   .then(([usersData, roomsData, bookingsData]) => createHotelData(usersData, roomsData, bookingsData))
   .catch(err => console.error(err))
-};
+}
 
 function postBookingData(booking) {
   fetch('https://fe-apps.herokuapp.com/api/v1/overlook/1904/bookings/bookings', {
@@ -192,9 +185,9 @@ function postBookingData(booking) {
     body: JSON.stringify(booking)
   })
   .then(response => console.log(response.status))
-  .then(response => window.alert(`Room ${booking.roomNumber} Booked`))
+  .then(window.alert(`Room ${booking.roomNumber} Booked`))
   .catch(err => console.error(err))
-};
+}
 
 function deleteData(booking) {
   fetch('https://fe-apps.herokuapp.com/api/v1/overlook/1904/bookings/bookings', {
@@ -206,4 +199,4 @@ function deleteData(booking) {
   })
   .then(response => console.log(response.status))
   .catch(err => console.error(err))
-};
+}
