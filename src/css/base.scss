@@ -210,7 +210,7 @@ span {
 }
 
 .user-card {
-  width: 75%
+  width: 90%
 }
 
 .booking-list-item {
@@ -225,5 +225,19 @@ span {
 
 .add-booking-form input {
   padding: 3%;
-  margin: 3%;
+}
+
+.choose-date-container,
+.select-room-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding: 2%;
+}
+
+.modify-booking-button-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
 }

@@ -286,7 +286,7 @@ const domUpdates = {
   },
 
   addOpenRoomsDropdown(date) {
-    let selectRoomInput = document.getElementById('select-room-container');
+    let selectRoomInput = document.querySelector('.select-room-container');
     selectRoomInput.classList.remove('hidden');
     let availableRoomsHTML = this.createOpenRoomHTML(date);
     console.log(availableRoomsHTML)
