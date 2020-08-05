@@ -6,7 +6,7 @@ const domUpdates = {
   roomsData: null,
   bookingsData: null,
   currentUser: null,
-  today: '2020/08/07',
+  today: new Moment(new Date()).format('YYYY/MM/DD'),
 
   hideAll() {
     let dashboards = document.querySelectorAll('.dashboard');
