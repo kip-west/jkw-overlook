@@ -24,6 +24,19 @@ hr {
   color: #CCCCCC;
 }
 
+ul,
+ol {
+  text-align: left;
+}
+
+ol li:last-child {
+  border-bottom: none;
+}
+
+span {
+  color: $text-focus-color;
+}
+
 .hidden {
   display: none!important
 }
@@ -83,38 +96,6 @@ hr {
   height: 90vh
 }
 
-.data-widget h2 {
-  font-size: 1.25vw;
-}
-
-ul,
-ol {
-  text-align: left;
-}
-
-span {
-  color: $text-focus-color;
-}
-
-.widget-number {
-  font-size: 3vw;
-}
-
-.widget-font {
-  padding: 3px
-}
-
-#upcoming-bookings,
-#past-bookings {
-  display: flex;
-  flex-direction: column;
-  font-size: 1.25vw;
-}
-
-.data-widget {
-  @include widgetStyle(flex, column, 90%)
-}
-
 .searchRooms-container,
 .searchUsers-container {
   background-color: $widget-color;
@@ -137,6 +118,52 @@ span {
   font-size: 1.2vw;
 }
 
+.data-widget h2 {
+  font-size: 1.25vw;
+}
+
+.data-widget {
+  @include widgetStyle(flex, column, 90%)
+}
+
+.widget-number {
+  font-size: 3vw;
+}
+
+.widget-font {
+  padding: 3px
+}
+
+/*-----------Customer Dashboard----------*/
+#upcoming-bookings,
+#past-bookings {
+  display: flex;
+  flex-direction: column;
+  font-size: 1.25vw;
+}
+
+.bookings-list {
+  @include listOfBookingsStyle(2%, 25vh)
+  color: $text-focus-color;
+  display: flex;
+  justify-content: center;
+  margin: 0;
+
+  li {
+    padding: 8px 16px;
+    border: $border-style;
+  }
+}
+
+.vacant-room-card,
+.user-card {
+  background-color: #E8E8EE;
+  border-radius: 16px;
+  border: $border-style;
+  height: fit-content;
+}
+
+/*-----------Customer Dashboard----------*/
 #select-date,
 #select-roomType,
 #select-user-by-name {
@@ -160,37 +187,12 @@ span {
   height: 75vh;
   overflow: scroll;
 }
-
-.vacant-room-card,
-.user-card {
-  background-color: #E8E8EE;
-  border-radius: 16px;
-  border: $border-style;
-  height: fit-content;
-}
-
-.user-card {
-  width: 75%
-}
-
+/*-----------Manager Dashboard----------*/
 .searchUsers-results {
   margin: 5%;
   align-content: center;
   display: flex;
   justify-content: center;
-}
-
-.bookings-list {
-  @include listOfBookingsStyle(2%, 25vh)
-  color: $text-focus-color;
-  display: flex;
-  justify-content: center;
-  margin: 0;
-}
-
-.bookings-list li {
-  padding: 8px 16px;
-  border: $border-style;
 }
 
 #list-of-bookings {
@@ -207,13 +209,13 @@ span {
   }
 }
 
-ol li:last-child {
-  border-bottom: none;
+.user-card {
+  width: 75%
 }
 
 .booking-list-item {
-  text-align: left;
   font-size: 1.5vw;
+  text-align: left;
 }
 
 .add-booking-form {
